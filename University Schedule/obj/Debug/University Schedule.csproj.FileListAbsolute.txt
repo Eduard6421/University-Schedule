@@ -1,1 +1,9 @@
 E:\GitHub\University Schedule\University Schedule\bin\Debug\University Schedule.exe.config
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\bin\Debug\University Schedule.exe.config
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\bin\Debug\University Schedule.exe
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\bin\Debug\University Schedule.pdb
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.csprojResolveAssemblyReference.cache
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Properties.Resources.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.csproj.GenerateResource.Cache
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.exe
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.pdb

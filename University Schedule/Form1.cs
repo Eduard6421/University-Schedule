@@ -12,6 +12,11 @@ namespace University_Schedule
 {
     public partial class Form1 : Form
     {
+
+
+        /// <summary>
+        /// HIIII
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
