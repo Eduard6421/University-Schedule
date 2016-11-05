@@ -9,7 +9,7 @@ namespace University_Schedule
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+      //aici este comentariul meu. Sper sa il gasesti!
         /// </summary>
         [STAThread]
         static void Main()
