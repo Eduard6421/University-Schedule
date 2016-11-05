@@ -20,6 +20,24 @@ namespace University_Schedule
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form form = new Form_Orar_Nou();
+            form.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

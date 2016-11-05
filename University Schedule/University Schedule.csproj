@@ -46,14 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form Orar Nou.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form Orar Nou.Designer.cs">
+      <DependentUpon>Form Orar Nou.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form Orar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form Orar.Designer.cs">
+      <DependentUpon>Form Orar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form Sali Libere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form Sali Libere.Designer.cs">
+      <DependentUpon>Form Sali Libere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form Main.Designer.cs">
+      <DependentUpon>Form Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form Orar Nou.resx">
+      <DependentUpon>Form Orar Nou.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form Orar.resx">
+      <DependentUpon>Form Orar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form Sali Libere.resx">
+      <DependentUpon>Form Sali Libere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form Main.resx">
+      <DependentUpon>Form Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
