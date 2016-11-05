@@ -10,6 +10,7 @@ namespace University_Schedule
     {
         /// <summary>
       //aici este comentariul meu. Sper sa il gasesti!
+      //ce faci bosulica 
         /// </summary>
         [STAThread]
         static void Main()
