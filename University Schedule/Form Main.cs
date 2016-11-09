@@ -39,5 +39,11 @@ namespace University_Schedule
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form test = new Test();
+            test.Show();
+        }
     }
 }
