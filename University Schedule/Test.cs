@@ -23,22 +23,14 @@ namespace University_Schedule
             Test_s a = new Test_s();
             a.Name = "Bob";
             a.Age = 33;
-            a.Save("heyy.xml");
+            a.XmlWriter("heyy.xml");
 
+            Test_s b = new Test_s();
+            b.Name = "Adam";
+            b.Age = 23;
+            b.XmlWriter("heyy.xml");
         }
     }
-    class Test_s
-    {
-        public string Name;
-        public int Age;
-        public void Save(string filename)
-        {
-            using (var stream = new FileStream(filename, FileMode.Create))
-            {
-                var XML = new XmlSerializer(typeof(Test_s));
-                XML.Serialize(stream, this);
-            }
-        }
-    }
+   
 
 }

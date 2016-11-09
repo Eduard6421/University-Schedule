@@ -78,6 +78,7 @@
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test_s.cs" />
     <EmbeddedResource Include="Form Orar Nou.resx">
       <DependentUpon>Form Orar Nou.cs</DependentUpon>
     </EmbeddedResource>
