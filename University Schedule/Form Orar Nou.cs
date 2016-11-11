@@ -9,29 +9,63 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Mai trebuie lucrat la scrisul in patratele selectate.
+/// </summary>
+
 namespace University_Schedule
 {
     public partial class Form_Orar_Nou : Form
     {
-        public Course curs;
-
-
+        public Course curs; //pentru stocarea datelor unei selectari ( trebui facut un vector sau introdus in baza de date).
+        Bitmap bmp; //imaginea de manevra ... trebuie abdatat pictureboxul pentru a se vedea stuff-urile adaugate.
+        RectangleF[] rec; //vector pentru stocarea dreptunghiurilor pentru scris ... pentru test este folosit cel dupa pozitia 0.
+        Point[] point; // vector folosit pentru stocarea patratelor pentru colorat in diferite culori ... trebuie facuta o functie de generat culori random.
+        int indexPoint; // indexul pentru cei 2 vectori
 
         public Form_Orar_Nou()
         {
             InitializeComponent();
+            rec = new RectangleF[20]; //initializare
+            point = new Point[20]; //initializare  ...test 20 se va mari mai tarziu
+            indexPoint = 0; //initializare
+            //se face imaginea initiala si se initializeaza pictureboxul
+            bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
+            pictureBox1.Image = bmp;
         }
-
+        /// <summary>
+        /// Se stocheaza Point - urile pentru desenarea lor ulterioara... stocharea se face
+        /// direct in dreptunghiurile corecte.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = e as MouseEventArgs;
             Point coordinates = me.Location;
             MessageBox.Show(coordinates.X.ToString() + "   " + coordinates.Y.ToString());
-            pictureBox1.Image = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width,pictureBox1.Size.Height);
-            Point p = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
-            pictureBox1.Image = Drawing.FillRectangleWithAColor(p, new Size(120, 90), pictureBox1.Image as Bitmap, Brushes.Red);
+           
+            //se cauta pe baza coordonatelor unde sa dat click in care patrat se doreste colorarea
+            //trebuie updatat cu patrate mai fine pentru cursurile cu ore impare precum si saptamani impare si pare.
+            point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
+
+            //Dreptunghiul unde se va scrie informatia
+            rec[indexPoint] = new RectangleF(point[indexPoint], new SizeF(120, 90));
+
+            indexPoint++;
         }
-        
+
+        private void DrawAllRectanglesSelected()
+        {
+            // se deseneaza toate dreptunghiurile selectate pentru inserarea datelor.
+            for (int i = 0; i < indexPoint; i++)
+            {
+                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(120, 90), bmp, Brushes.Red);
+            }
+            //update ( nu e necesara decat pentru test ) 
+            pictureBox1.Image = bmp;
+        }
+
         /// <summary>
         /// In momentul in care apesi pe buton va scrie textul din Materie in imagine la inceputul ei.
         /// Trebuie lucrat si la incadrarea intr-un dreptunghi corespunzator.
@@ -40,14 +74,23 @@ namespace University_Schedule
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            var form = new Insert_Course(this);
-            form.ShowDialog();
+            //trebuie modificat pentru toate datele precum si incadrarea lor in urmatoarele dreptunghiuri.
+            DrawAllRectanglesSelected();
             curs = new Course();
-            if (form.ShowDialog() == DialogResult.OK)
+            var form = new Insert_Course(curs);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
             {
-                curs.Materia = form.curs.Materia;
+                 bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image,rec[0]);
             }
-            pictureBox1.Image = Drawing.DrawString(curs.Materia,pictureBox1.Image);
+            pictureBox1.Image = bmp;
+        }
+
+
+        //o sa ne trebuiasca pentru optimizare
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
         }
     }
 }

@@ -12,14 +12,12 @@ namespace University_Schedule
 {
     public partial class Insert_Course : Form
     {
-
-        Form_Orar_Nou form;
+        
         public Course curs;
-        public Insert_Course(Form_Orar_Nou f)
+        public Insert_Course(Course cours)
         {
             InitializeComponent();
-            form = f;
-            curs = new Course();
+            curs = cours;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,14 +27,12 @@ namespace University_Schedule
             curs.Profesor = textBox4.Text;
             curs.Sala = textBox3.Text;
             curs.Semigrupa = textBox5.Text;
-            DialogResult = DialogResult.OK;
+
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-       
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-        }
+
+
     }
 }

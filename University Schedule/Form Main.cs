@@ -23,11 +23,18 @@ namespace University_Schedule
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
+        /// <summary>
+        /// Pentru a trece comanda la urmatorul form si a nu trebui sa dai stop mereu
+        /// cand vrei sa inchizi aplicatia din IDE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             Form form = new Form_Orar_Nou();
-            form.Show();
             this.Hide();
+            form.Closed += (s, args) => this.Close();
+            form.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -43,7 +50,12 @@ namespace University_Schedule
         private void button4_Click(object sender, EventArgs e)
         {
             Form test = new Test();
+            this.Hide();
+            test.Closed += (s, args) => this.Close();
             test.Show();
+        }
+        protected override void OnLoad(EventArgs e)
+        {
         }
     }
 }

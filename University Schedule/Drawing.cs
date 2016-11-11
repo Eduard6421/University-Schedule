@@ -65,11 +65,9 @@ namespace University_Schedule
             return myImage;
         }
 
-        public static Bitmap DrawString(string text,Image image)
+        public static Bitmap DrawString(string text,Image image,RectangleF rectf)
         {
             Bitmap bmp = new Bitmap(image);
-            //patratul in care va fi desenat textul cu coordonatele din imaginea preluata la linia precedenta
-            RectangleF rectf = new RectangleF(0, 0, 150, 150);
             //incarcam imaginea intr-un Graphics pentru a desena
             Graphics g = Graphics.FromImage(bmp);
             //pentru claritate proprietati
