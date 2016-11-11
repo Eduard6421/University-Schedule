@@ -23,8 +23,8 @@ namespace University_Schedule
             Point coordinates = me.Location;
             MessageBox.Show(coordinates.X.ToString() + "   " + coordinates.Y.ToString());
             pictureBox1.Image = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width,pictureBox1.Size.Height);
-            //trebuie sa gaseasca dreptunghiul
-            pictureBox1.Image = Drawing.FillRectangleWithAColor(new Point(coordinates.X, coordinates.Y), new Size(120, 90), pictureBox1.Image as Bitmap, Brushes.Red);
+            Point p = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
+            pictureBox1.Image = Drawing.FillRectangleWithAColor(p, new Size(120, 90), pictureBox1.Image as Bitmap, Brushes.Red);
         }
     }
 }

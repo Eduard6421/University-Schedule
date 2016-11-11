@@ -33,6 +33,27 @@ namespace University_Schedule
             return img;
         }
 
+
+        public static Point SearchForMatch(int x,int y)
+        {
+            int xx = 0, yy = 0;
+            for(int i = 0;i<=120*6;i+=120)
+                if(x<i)
+                {
+                    xx = i;
+                    xx -= 120;
+                    break;
+                }
+            for(int i = 0;i<90*5;i+=90)
+                if(y<i)
+                {
+                    yy = i;
+                    yy -= 90;
+                    break;
+                }
+            return (new Point(xx, yy));
+        }
+
         public static Bitmap FillRectangleWithAColor(Point point1,Size size,Bitmap myImage,Brush color)
         {
            
