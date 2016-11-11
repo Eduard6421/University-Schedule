@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /// <summary>
-/// Mai trebuie lucrat la scrisul in patratele selectate.
+/// Posibil inlocuirea array-ului Point si RectangleF cu 2 liste cu aceste date pentru 
+///    manipularea mai buna in scrierea lor in bitmap.
 /// </summary>
 
 namespace University_Schedule
@@ -50,7 +51,7 @@ namespace University_Schedule
             point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
 
             //Dreptunghiul unde se va scrie informatia
-            rec[indexPoint] = new RectangleF(point[indexPoint], new SizeF(120, 90));
+            rec[indexPoint] = new RectangleF(point[indexPoint], new SizeF(60, 22));
 
             indexPoint++;
         }
@@ -60,7 +61,7 @@ namespace University_Schedule
             // se deseneaza toate dreptunghiurile selectate pentru inserarea datelor.
             for (int i = 0; i < indexPoint; i++)
             {
-                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(120, 90), bmp, Brushes.Red);
+                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(60, 22), bmp, Brushes.Red);
             }
             //update ( nu e necesara decat pentru test ) 
             pictureBox1.Image = bmp;
@@ -81,9 +82,10 @@ namespace University_Schedule
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                 bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image,rec[0]);
+                 bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image,rec[indexPoint-1]);
             }
             pictureBox1.Image = bmp;
+            indexPoint = 0;
         }
 
 

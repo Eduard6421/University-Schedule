@@ -23,13 +23,20 @@ namespace University_Schedule
             Bitmap img = DrawFilledRectangle(Width, Height, Brushes.White);
 
             Graphics g = Graphics.FromImage(img);
-            for (int i = 0; i <= Width; i += 120)
-                for (int j = 0; j <= Height; j += 90)
+            for (int i = 0; i <= Width; i += 60)
+                for (int j = 0; j <= Height; j += 22)
                 {
-                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(120, 90)));
-                    g.DrawRectangle(new Pen(Brushes.Black), rec);
+                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(60, 22)));
+                    g.DrawRectangle(new Pen(Brushes.Gray), rec);
                 }
 
+            for (int i = 0; i <= Width; i += 120)
+                for (int j = 0; j <= Height; j += 88)
+                {
+                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(120, 88)));
+                    g.DrawRectangle(new Pen(Brushes.Black), rec);
+                    
+                }
             return img;
         }
 
@@ -37,18 +44,18 @@ namespace University_Schedule
         public static Point SearchForMatch(int x,int y)
         {
             int xx = 0, yy = 0;
-            for(int i = 0;i<=120*6;i+=120)
+            for(int i = 0;i<=60*12;i+=60)
                 if(x<i)
                 {
                     xx = i;
-                    xx -= 120;
+                    xx -= 60;
                     break;
                 }
-            for(int i = 0;i<90*5;i+=90)
+            for(int i = 0;i<22*20;i+=22)
                 if(y<i)
                 {
                     yy = i;
-                    yy -= 90;
+                    yy -= 22;
                     break;
                 }
             return (new Point(xx, yy));
@@ -64,6 +71,15 @@ namespace University_Schedule
             }
             return myImage;
         }
+        /// <summary>
+        /// Trebuie schimbat dimensiunea font-ului dupa curs astfel intr-un curs de un sfert de patratica sa scrie mic,
+        /// iar intr-unul de curs saptamanar sa scrie font mare ... dimensiunea se schimba in 'new Font("Segoe", AICI)'.
+        /// SFAT : Dimensiunea fontului sa fie trimisa prin parametru in momentul in care se vede de cate dreptungiuri sunt in stiva.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="image"></param>
+        /// <param name="rectf"></param>
+        /// <returns></returns>
 
         public static Bitmap DrawString(string text,Image image,RectangleF rectf)
         {
@@ -75,7 +91,7 @@ namespace University_Schedule
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             //functia asta va scrie mesajul din primul parametru in imagine la coordonatele dreptunghiului
-            g.DrawString(text, new Font("Tahoma", 10), Brushes.Black, rectf);
+            g.DrawString(text, new Font("Segoe", 10), Brushes.Black, rectf);
 
             //curata streamul
             g.Flush();
