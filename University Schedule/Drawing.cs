@@ -65,9 +65,9 @@ namespace University_Schedule
             return myImage;
         }
 
-        public static Bitmap DrawString(string filename)
+        public static Bitmap DrawString(string text,Image image)
         {
-            Bitmap bmp = new Bitmap(filename);
+            Bitmap bmp = new Bitmap(image);
             //patratul in care va fi desenat textul cu coordonatele din imaginea preluata la linia precedenta
             RectangleF rectf = new RectangleF(0, 0, 150, 150);
             //incarcam imaginea intr-un Graphics pentru a desena
@@ -77,7 +77,7 @@ namespace University_Schedule
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             //functia asta va scrie mesajul din primul parametru in imagine la coordonatele dreptunghiului
-            g.DrawString("yourText", new Font("Tahoma", 20), Brushes.Black, rectf);
+            g.DrawString(text, new Font("Tahoma", 10), Brushes.Black, rectf);
 
             //curata streamul
             g.Flush();
