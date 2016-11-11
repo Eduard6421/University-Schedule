@@ -17,24 +17,14 @@ namespace University_Schedule
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Form_Orar_Nou_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("ddddd");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("ddddd");
+            MouseEventArgs me = e as MouseEventArgs;
+            Point coordinates = me.Location;
+            MessageBox.Show(coordinates.X.ToString() + "   " + coordinates.Y.ToString());
+            pictureBox1.Image = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width,pictureBox1.Size.Height);
+            //trebuie sa gaseasca dreptunghiul
+            pictureBox1.Image = Drawing.FillRectangleWithAColor(new Point(coordinates.X, coordinates.Y), new Size(120, 90), pictureBox1.Image as Bitmap, Brushes.Red);
         }
     }
 }
