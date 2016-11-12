@@ -40,6 +40,26 @@ namespace University_Schedule
             return img;
         }
 
+        /// <summary>
+        /// Trebuie caz special pentru fiecare situatie : 
+        /// 1) este curs deci are 8 patratele.
+        /// 2) este laborator ori curs odata la 2 saptamani deci 4 patratele
+        /// 3) este o data la 2 saptamani si este laborator de 2 patratele
+        ///  .... Trebuie o formula matematica care sa dea direct incepului dreptunghiului in care sa scrie
+        ///  ........ la fel si pentru celelelalte date.
+        ///  EXEMPLU de dreptunghi care returneaza. 
+        ///  0,0    0,1     0,2     0,3   Pointul de start va fii (0,0) iar indexul va avea numarul de patrate din interior asa ca 
+        ///  1,0    1,1     1,2     1,3     sizeul ca trebui sa fie dimensiunea unui patratel ori indexul.
+        ///  2,0    2,1     2,2     2,3   Adaug la Point-ul start x+35 si y+15 ca sa il mut pe mijloc in cazul laboratorului o data pe saptamana de 4 patratele.
+        ///  3,0    3,1     3,2     3,3   astfel punctul de unde porneste dreptunghiul returnat pentru scriere este de 1,1 aproximativ.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static Rectangle SearchTypeCourse(Point start,int index)
+        {
+            return (new Rectangle(new Point(start.X +35,start.Y+15), new Size(index * 60, index * 22)));
+        }
 
         public static Point SearchForMatch(int x,int y)
         {

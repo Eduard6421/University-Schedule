@@ -82,7 +82,7 @@ namespace University_Schedule
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                 bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image,rec[indexPoint-1]);
+                 bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image,Drawing.SearchTypeCourse(point[0],indexPoint));
             }
             pictureBox1.Image = bmp;
             indexPoint = 0;
