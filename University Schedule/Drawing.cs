@@ -23,18 +23,18 @@ namespace University_Schedule
             Bitmap img = DrawFilledRectangle(Width, Height, Brushes.White);
 
             Graphics g = Graphics.FromImage(img);
-            for (int i = 0; i <= Width; i += 60)
-                for (int j = 0; j <= Height; j += 22)
+            for (int i = 0; i <= Width; i += 94)
+                for (int j = 0; j <= Height; j += 32)
                 {
-                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(60, 22)));
+                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(94, 32)));
                     g.DrawRectangle(new Pen(Brushes.Gray), rec);
                 }
 
-            for (int i = 0; i <= Width; i += 120)
-                for (int j = 0; j <= Height; j += 88)
+            for (int i = 0; i <= Width; i += 188)
+                for (int j = 0; j <= Height; j += 128)
                 {
-                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(120, 88)));
-                    g.DrawRectangle(new Pen(Brushes.Black), rec);
+                    Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(188, 128)));
+                    g.DrawRectangle(new Pen(Brushes.DarkMagenta,2), rec);
                     
                 }
             return img;
@@ -58,24 +58,26 @@ namespace University_Schedule
         /// <returns></returns>
         public static Rectangle SearchTypeCourse(Point start,int index)
         {
-            return (new Rectangle(new Point(start.X +35,start.Y+15), new Size(index * 60, index * 22)));
+            return (new Rectangle(new Point(start.X +35,start.Y+15), new Size(index * 94, index * 32)));
         }
+
+      
 
         public static Point SearchForMatch(int x,int y)
         {
             int xx = 0, yy = 0;
-            for(int i = 0;i<=60*12;i+=60)
+            for(int i = 0;i<= 94 * 12;i+= 94)
                 if(x<i)
                 {
                     xx = i;
-                    xx -= 60;
+                    xx -= 94;
                     break;
                 }
-            for(int i = 0;i<22*20;i+=22)
+            for(int i = 0;i< 32 * 20;i+= 32)
                 if(y<i)
                 {
                     yy = i;
-                    yy -= 22;
+                    yy -= 32;
                     break;
                 }
             return (new Point(xx, yy));
