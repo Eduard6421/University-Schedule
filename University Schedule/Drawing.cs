@@ -11,8 +11,6 @@ namespace University_Schedule
     class Drawing
     {
         Drawing() { }
-
-        public static int index;
       
         public static Bitmap DrawRectangleOnImage(int Width,int Height)
         {
@@ -40,20 +38,6 @@ namespace University_Schedule
         public static Rectangle SearchTypeCourse(Point start,int index)
         {
             return (new Rectangle(new Point(start.X +35,start.Y+15), new Size(index * 94, index * 32)));
-        }
-
-      
-        public static Rectangle[] DivideInRectangle(Rectangle original)
-        {
-            index = 0;
-            Rectangle[] rec = new Rectangle[240];
-            for(int i = original.X;i<=original.Width; i+=94)
-            for(int j = original.Y;j<=original.Height;j+=32)
-                {
-                    rec[index] = new Rectangle(i, j, 94, 32);
-                    index++;
-                }
-            return rec;
         }
 
         public static Point SearchForMatch(int x,int y)

@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /// <summary>
-/// Mai trebuie lucrat putin la Searchul patratelor ca sa fie mai fina.
+/// Singurul bug este atunci cand selectezi din nou nu dispare vechea selectare .
+/// Rezolvare ( se salveaza imaginea veche atunci cand apesi pe mouse astfel incat daca se selecteaza
+/// din nou sa se interschimbe) .
 /// </summary>
 
 namespace University_Schedule
@@ -33,15 +35,6 @@ namespace University_Schedule
             pictureBox1.Image = bmp;
         }
         
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs me = e as MouseEventArgs;
-            Point coordinates = me.Location;
-            MessageBox.Show(coordinates.X.ToString() + "   " + coordinates.Y.ToString());
-           
-           
-        }
-
         private void DrawAllRectanglesSelected()
         {
             for (int i = 0; i < indexPoint; i++)
@@ -52,67 +45,114 @@ namespace University_Schedule
             pictureBox1.Image = bmp;
         }
    
-
+        /// <summary>
+        /// Aici la semnul => va trebui sa salvam datele pe care le baga atunci cand apasa 
+        /// pe buton pentru algoritm.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             curs = new Course();
             var form = new Insert_Course(curs);
             form.ShowDialog();
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-            using (Graphics graph = Graphics.FromImage(bmp))
+        
+            ///=>           
+            if (!draw_sel)
             {
-                graph.FillRectangle(Brushes.Red, selected_rectagle);
+                using (Graphics graph = Graphics.FromImage(bmp))
+                {
+                    graph.FillRectangle(Brushes.Red, selected_rectagle);
+                }
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    bmp = Drawing.DrawString(curs.Materia, pictureBox1.Image, selected_rectagle);
+                }
+                pictureBox1.Image = bmp;
+            }
+            else
+            {
+                DrawAllRectanglesSelected();
+                indexPoint = 0;
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    bmp = Drawing.DrawString(curs.Materia, pictureBox1.Image, new RectangleF(point[0], new SizeF(indexPoint * 94, indexPoint * 32)));
+                }
+                pictureBox1.Image = bmp;
             }
             
-            if (form.DialogResult == DialogResult.OK)
-            {
-                bmp = Drawing.DrawString(curs.Materia,pictureBox1.Image, new RectangleF(point[0], new SizeF(indexPoint * 94, indexPoint * 32)));
-             
-            }
-            pictureBox1.Image = bmp;
             indexPoint = 0;
-
-        
         }
-
-
     
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
         }
 
-        
+         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = e as MouseEventArgs;
+            Point coordinates = me.Location;
+            if (clickOrSelected != "selected")
+            {
+                clickOrSelected = "click";
+                point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
+                indexPoint++;
+            }
+          
+        }
+
         private Point RectStartPoint;
+        private Bitmap copy;
         private Point pointStart;
         private Point endPoint;
         private Rectangle Rect = new Rectangle();
         private Brush selectionBrush = new SolidBrush(Color.FromArgb(128, 72, 145, 220));
         private bool isDrawing;
+        private string clickOrSelected = string.Empty;
+        private bool draw_sel;
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (Rect.Contains(e.Location))
-                {
-                    Debug.WriteLine("Right click");
-                }
+                bmp = copy;
+                return;
             }
-            isDrawing = false;
-            endPoint = Drawing.SearchForMatch(Rect.Width + 94, Rect.Height + 32);
-
-            using (Graphics graph = Graphics.FromImage(bmp))
+            if (clickOrSelected == "selected")
             {
-                graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
+                isDrawing = false;
+                pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
+                endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
+
+                using (Graphics graph = Graphics.FromImage(bmp))
+                {
+                    graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
+                }
+                pictureBox1.Image = bmp;
+                draw_sel = false;
             }
-            pictureBox1.Image = bmp;
+            else if (clickOrSelected == "click")
+            {
+                draw_sel = true;
+                using (Graphics graph = Graphics.FromImage(bmp))
+                {
+                    graph.FillRectangle(selectionBrush, point[indexPoint-1].X,point[indexPoint-1].Y, 94,32);
+                }
+                pictureBox1.Image = bmp;
+            }
+            
+            clickOrSelected = string.Empty;
         }
+       
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
+            {
                 return;
+            }
             Point tempEndPoint = e.Location;
             Rect.Location = new Point(
                 Math.Min(RectStartPoint.X, tempEndPoint.X),
@@ -121,15 +161,17 @@ namespace University_Schedule
                 Math.Abs(RectStartPoint.X - tempEndPoint.X),
                 Math.Abs(RectStartPoint.Y - tempEndPoint.Y));
             pictureBox1.Invalidate();
+            if(Rect.Size.Width>=2 || Rect.Height >=2)
+                clickOrSelected = "selected"; 
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             RectStartPoint = e.Location;
             isDrawing = true;
-            indexPoint = 0;
-            pointStart = Drawing.SearchForMatch(RectStartPoint.X, RectStartPoint.Y);
-            point[indexPoint] = Drawing.SearchForMatch(RectStartPoint.X,RectStartPoint.Y);
+            selected_rectagle = new Rectangle();
+            copy = bmp.Clone() as Bitmap;
+            
             Invalidate();
         }
 
@@ -137,15 +179,12 @@ namespace University_Schedule
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-           
             if (pictureBox1.Image != null)
             {
                 if (Rect != null && Rect.Width > 0 && Rect.Height > 0 && isDrawing)
                 {
-                    Point point2 = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
-                    Size size = new Size(point2);
-                    selected_rectagle = new Rectangle(new Point(Rect.Location.X, Rect.Location.Y), new Size(Rect.Size.Width, Rect.Size.Height));
-                     e.Graphics.FillRectangle(selectionBrush, Rect);
+                    selected_rectagle = Rect;
+                    e.Graphics.FillRectangle(selectionBrush, Rect);
                 }
             }
           
