@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <access_profesor>Andrei Mincu</access_profesor>
+    <access_sala>131</access_sala>
+    <access_materia>Matematica</access_materia>
+    <access_ora>10-12</access_ora>
+    <acces_semigrupa>1</acces_semigrupa>
+  </Course>
+  <Course>
+    <access_profesor>Vladoiu Marius</access_profesor>
+    <access_sala>Spiru Haret</access_sala>
+    <access_materia>Algebra</access_materia>
+    <access_ora>14-16</access_ora>
+    <acces_semigrupa>X</acces_semigrupa>
+  </Course>
+</ArrayOfCourse>

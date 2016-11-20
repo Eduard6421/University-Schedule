@@ -49,10 +49,10 @@ namespace University_Schedule
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form test = new Test();
+            //Form test = new Test();
             this.Hide();
-            test.Closed += (s, args) => this.Close();
-            test.Show();
+            //test.Closed += (s, args) => this.Close();
+           // test.Show();
         }
         protected override void OnLoad(EventArgs e)
         {

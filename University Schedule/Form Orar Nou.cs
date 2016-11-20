@@ -18,6 +18,13 @@ namespace University_Schedule
 {
     public partial class Form_Orar_Nou : Form
     {
+        private static List<Course> cursuri = new List<Course>();
+
+        public static List<Course> GetList()
+        {
+            return cursuri;
+        }
+
         public Course curs; 
         Bitmap bmp; 
         Point[] point; 
@@ -63,7 +70,7 @@ namespace University_Schedule
                 }
                 if (form.DialogResult == DialogResult.OK)
                 {
-                    bmp = Drawing.DrawString(curs.Materia, pictureBox1.Image, selected_rectagle);
+                    bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
                 }
                 pictureBox1.Image = bmp;
             }
@@ -73,7 +80,7 @@ namespace University_Schedule
                 indexPoint = 0;
                 if (form.DialogResult == DialogResult.OK)
                 {
-                    bmp = Drawing.DrawString(curs.Materia, pictureBox1.Image, new RectangleF(point[0], new SizeF(indexPoint * 94, indexPoint * 32)));
+                    bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, new RectangleF(point[0], new SizeF(indexPoint * 94, indexPoint * 32)));
                 }
                 pictureBox1.Image = bmp;
             }
@@ -187,6 +194,16 @@ namespace University_Schedule
                     e.Graphics.FillRectangle(selectionBrush, Rect);
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveXML.Save_Data(cursuri, "data.xml");
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

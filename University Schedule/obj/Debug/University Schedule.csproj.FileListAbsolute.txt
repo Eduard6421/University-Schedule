@@ -31,3 +31,4 @@ C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University_Schedule.
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University_Schedule.Properties.Resources.resources
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University Schedule.csproj.GenerateResource.Cache
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
+E:\GitHub\University Schedule\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
