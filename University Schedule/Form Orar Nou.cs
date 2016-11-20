@@ -86,7 +86,8 @@ namespace University_Schedule
                 }
                 if (form.DialogResult == DialogResult.OK)
                 {
-                    bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
+                    // bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
+                    bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
                 }
                 pictureBox1.Image = bmp;
             }
