@@ -49,7 +49,22 @@ namespace University_Schedule
             }
             pictureBox1.Image = bmp;
         }
-   
+        
+        private Point GetMin_possition()
+        {
+            int min_x = point[0].X;
+            int min_y = point[0].Y;
+            for(int i = 1; i<indexPoint ; i++)
+            {
+                min_x = Math.Min(min_x, point[i].X);
+                min_y = Math.Min(min_y, point[i].Y);
+            }
+            return (new Point(min_x,min_y));
+        }   
+        //private Size GetMax_size()
+        //{
+
+        //}
       
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,7 +72,7 @@ namespace University_Schedule
             var form = new Insert_Course(curs);
             form.ShowDialog();
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-        
+            
             if (!draw_sel)
             {
                 if (indexPoint > 0)
@@ -86,6 +101,7 @@ namespace University_Schedule
             }
             isStarted = false;
             indexPoint = 0;
+            //bmp.Save("image.png");
         }
     
         protected override void OnLoad(EventArgs e)
