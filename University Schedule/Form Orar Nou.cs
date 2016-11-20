@@ -11,9 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /// <summary>
-/// Singurul bug este atunci cand selectezi din nou nu dispare vechea selectare .
-/// Rezolvare ( se salveaza imaginea veche atunci cand apesi pe mouse astfel incat daca se selecteaza
-/// din nou sa se interschimbe) .
+/// Daca nu se introduce data in insert_data tot coloreaza patratul selectat
 /// </summary>
 
 namespace University_Schedule
@@ -45,12 +43,7 @@ namespace University_Schedule
             pictureBox1.Image = bmp;
         }
    
-        /// <summary>
-        /// Aici la semnul => va trebui sa salvam datele pe care le baga atunci cand apasa 
-        /// pe buton pentru algoritm.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void button1_Click(object sender, EventArgs e)
         {
             curs = new Course();
@@ -58,9 +51,12 @@ namespace University_Schedule
             form.ShowDialog();
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
         
-            ///=>           
             if (!draw_sel)
             {
+                if (indexPoint > 0)
+                {
+                    DrawAllRectanglesSelected();
+                }
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
                     graph.FillRectangle(Brushes.Red, selected_rectagle);
@@ -81,7 +77,7 @@ namespace University_Schedule
                 }
                 pictureBox1.Image = bmp;
             }
-            
+            isStarted = false;
             indexPoint = 0;
         }
     
@@ -100,9 +96,7 @@ namespace University_Schedule
                 point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
                 indexPoint++;
             }
-          
         }
-
         private Point RectStartPoint;
         private Bitmap copy;
         private Point pointStart;
@@ -117,7 +111,6 @@ namespace University_Schedule
         {
             if (e.Button == MouseButtons.Right)
             {
-                bmp = copy;
                 return;
             }
             if (clickOrSelected == "selected")
@@ -125,16 +118,18 @@ namespace University_Schedule
                 isDrawing = false;
                 pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
                 endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
-
+                
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
                     graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
                 }
                 pictureBox1.Image = bmp;
                 draw_sel = false;
+                deselected = true;
             }
             else if (clickOrSelected == "click")
             {
+                deselected = false;
                 draw_sel = true;
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
@@ -142,11 +137,10 @@ namespace University_Schedule
                 }
                 pictureBox1.Image = bmp;
             }
-            
             clickOrSelected = string.Empty;
         }
-       
-
+        bool isStarted = false;
+        bool deselected = false;
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
@@ -161,22 +155,28 @@ namespace University_Schedule
                 Math.Abs(RectStartPoint.X - tempEndPoint.X),
                 Math.Abs(RectStartPoint.Y - tempEndPoint.Y));
             pictureBox1.Invalidate();
-            if(Rect.Size.Width>=2 || Rect.Height >=2)
-                clickOrSelected = "selected"; 
+            if (Rect.Size.Width >= 2 || Rect.Height >= 2)
+            {
+                clickOrSelected = "selected";
+            }
         }
-
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            if(isStarted == true && deselected)
+            {
+                bmp = copy;
+                pictureBox1.Image = bmp;
+            }
+            isStarted = true;
+            copy = bmp.Clone() as Bitmap;
+
             RectStartPoint = e.Location;
             isDrawing = true;
             selected_rectagle = new Rectangle();
-            copy = bmp.Clone() as Bitmap;
             
             Invalidate();
         }
-
-
-
+        
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (pictureBox1.Image != null)
@@ -187,7 +187,6 @@ namespace University_Schedule
                     e.Graphics.FillRectangle(selectionBrush, Rect);
                 }
             }
-          
         }
     }
 }
