@@ -73,7 +73,7 @@ namespace University_Schedule
             var form = new Insert_Course(curs);
             form.ShowDialog();
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-            
+
             if (!draw_sel)
             {
                 if (indexPoint > 0)
@@ -142,7 +142,7 @@ namespace University_Schedule
                 isDrawing = false;
                 pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
                 endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
-                
+               
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
                     graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
