@@ -18,6 +18,8 @@ namespace University_Schedule
 {
     public partial class Form_Orar_Nou : Form
     {
+        decimal group_number;
+
         private static List<Course> cursuri = new List<Course>();
 
         public static List<Course> GetList()
@@ -214,12 +216,19 @@ namespace University_Schedule
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SaveXML.Save_Data(cursuri, "data.xml");
+            SaveXML.Save_Data(cursuri, "grupa_" + group_number +".xml");
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
+           group_number = numericUpDown1.Value;
         }
+
+
+
+
+
+
+
     }
 }
