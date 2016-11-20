@@ -34,6 +34,14 @@ namespace University_Schedule
             return img;
         }
 
+        public static Bitmap InsertDataInImage(Bitmap source,Brushes color,Rectangle rec)
+        {
+            //curs sau laborator saptamanal
+            if(rec.Width >= 188 && rec.Height >= 64)
+            {
+
+            }
+        }
       
         public static Rectangle SearchTypeCourse(Point start,int index)
         {

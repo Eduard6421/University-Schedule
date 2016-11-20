@@ -226,7 +226,7 @@ namespace University_Schedule
         private void button3_Click(object sender, EventArgs e)
         {
             ColorDialog colorDlg = new ColorDialog();
-            colorDlg.AllowFullOpen = false;
+            colorDlg.AllowFullOpen = true;
             colorDlg.AnyColor = true;
             colorDlg.SolidColorOnly = false;
             colorDlg.Color = Color.Red;
