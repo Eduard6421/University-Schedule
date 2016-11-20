@@ -18,8 +18,7 @@ namespace University_Schedule
 {
     public partial class Form_Orar_Nou : Form
     {
-        decimal group_number;
-
+        private Brush color_select = Brushes.Aquamarine;
         private static List<Course> cursuri = new List<Course>();
 
         public static List<Course> GetList()
@@ -46,7 +45,7 @@ namespace University_Schedule
         {
             for (int i = 0; i < indexPoint; i++)
             {
-                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(94, 32), bmp, Brushes.Red);
+                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(94, 32), bmp, color_select);
                 
             }
             pictureBox1.Image = bmp;
@@ -74,7 +73,7 @@ namespace University_Schedule
             var form = new Insert_Course(curs);
             form.ShowDialog();
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-            
+
             if (!draw_sel)
             {
                 if (indexPoint > 0)
@@ -83,7 +82,7 @@ namespace University_Schedule
                 }
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
-                    graph.FillRectangle(Brushes.Red, selected_rectagle);
+                    graph.FillRectangle(color_select, selected_rectagle);
                 }
                 if (form.DialogResult == DialogResult.OK)
                 {
@@ -143,7 +142,7 @@ namespace University_Schedule
                 isDrawing = false;
                 pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
                 endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
-                
+               
                 using (Graphics graph = Graphics.FromImage(bmp))
                 {
                     graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
@@ -216,19 +215,26 @@ namespace University_Schedule
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SaveXML.Save_Data(cursuri, "grupa_" + group_number +".xml");
+            SaveXML.Save_Data(cursuri, "data.xml");
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-           group_number = numericUpDown1.Value;
+
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog();
+            colorDlg.AllowFullOpen = true;
+            colorDlg.AnyColor = true;
+            colorDlg.SolidColorOnly = false;
+            colorDlg.Color = Color.Red;
 
-
-
-
-
-
+            if (colorDlg.ShowDialog() == DialogResult.OK)
+            {
+                color_select = new SolidBrush(colorDlg.Color);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -34,6 +35,43 @@ namespace University_Schedule
             return img;
         }
 
+        public static Bitmap InsertDataInImage(Bitmap source,Brushes color,Rectangle rec)
+        {
+            Rectangle profesor;
+            Rectangle curs;
+            Rectangle sala;
+            Rectangle semigrupa;
+            using (Graphics graph = Graphics.FromImage(source))
+            {
+
+                //o patratratica selectata
+                if (rec.Width == 188 && rec.Height == 32)
+                {
+                    curs = new Rectangle(new Point(rec.X + 5, rec.Y + 5), new Size(rec.Width, rec.Height));
+                    semigrupa = new Rectangle(new Point(rec.X + 90, rec.Y + 5), new Size(rec.Width, rec.Height));
+                    profesor = new Rectangle(new Point(rec.X + 5, rec.Y + 90), new Size(rec.Width, rec.Height));
+                    ;
+                }
+                else if (rec.Width == 376 && rec.Height == 256)
+                {
+
+                }
+                else if (rec.Width == 564 && rec.Height == 384)
+                {
+
+                }
+                else if (rec.Width == 752 && rec.Height == 512)
+                {
+
+                }
+                else
+                {
+                    Debug.WriteLine("Error dimenssion!");
+                }
+
+            }
+            return source;
+        }
       
         public static Rectangle SearchTypeCourse(Point start,int index)
         {
