@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <access_profesor>123</access_profesor>
+    <access_sala>123</access_sala>
+    <access_materia>SMex</access_materia>
+    <access_ora>13</access_ora>
+    <acces_semigrupa>123</acces_semigrupa>
+  </Course>
+  <Course>
+    <access_profesor>123</access_profesor>
+    <access_sala>123</access_sala>
+    <access_materia>smex231</access_materia>
+    <access_ora>123</access_ora>
+    <acces_semigrupa>123</acces_semigrupa>
+  </Course>
+</ArrayOfCourse>
