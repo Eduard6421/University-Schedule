@@ -32,3 +32,16 @@ C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University_Schedule.
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University Schedule.csproj.GenerateResource.Cache
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
 E:\GitHub\University Schedule\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
+E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.exe.config
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.exe
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.pdb
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.csprojResolveAssemblyReference.cache
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Orar_Nou.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Orar.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Sali_Libere.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form1.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.Properties.Resources.resources
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.csproj.GenerateResource.Cache
+E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.exe
+E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.pdb

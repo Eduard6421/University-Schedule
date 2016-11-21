@@ -51,59 +51,16 @@ namespace University_Schedule
             Rectangle semigrupa;
             using (Graphics graph = Graphics.FromImage(source))
             {
-               
-                if (rec.Width == 188 && rec.Height == 32)
-                {
-                    curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 160, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 15), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + 160, rec.Y + 15), new Size(rec.Width, rec.Height));
 
-                    source = DrawString(cours.access_materia, source, curs);
-                    source = DrawString(cours.acces_semigrupa, source, semigrupa);
-                    source = DrawString(cours.access_profesor, source, profesor);
-                    source = DrawString(cours.access_sala, source, sala);
-                }
-                else if (rec.Width == 188 && rec.Height == 64)
-                {
-                    curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 160, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 30), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + 160, rec.Y + 30), new Size(rec.Width, rec.Height));
+                curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
+                semigrupa = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4)), rec.Y + 1), new Size(rec.Width, rec.Height));
+                profesor = new Rectangle(new Point(rec.X + 1, rec.Y + (rec.Height / 2)), new Size(rec.Width, rec.Height));
+                sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4)), rec.Y + (rec.Height / 2)), new Size(rec.Width, rec.Height));
 
-                    source = DrawString(cours.access_materia, source, curs);
-                    source = DrawString(cours.acces_semigrupa, source, semigrupa);
-                    source = DrawString(cours.access_profesor, source, profesor);
-                    source = DrawString(cours.access_sala, source, sala);
-                }
-                else if (rec.Width == 188 && rec.Height == 96)
-                {
-                    curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 160, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 45), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + 160, rec.Y + 45), new Size(rec.Width, rec.Height));
-
-                    source = DrawString(cours.access_materia, source, curs);
-                    source = DrawString(cours.acces_semigrupa, source, semigrupa);
-                    source = DrawString(cours.access_profesor, source, profesor);
-                    source = DrawString(cours.access_sala, source, sala);
-                }
-                else if (rec.Width == 188 && rec.Height == 128)
-                {
-                    curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 160, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 110), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + 160, rec.Y + 110), new Size(rec.Width, rec.Height));
-
-                    source = DrawString(cours.access_materia, source, curs);
-                    source = DrawString(cours.acces_semigrupa, source, semigrupa);
-                    source = DrawString(cours.access_profesor, source, profesor);
-                    source = DrawString(cours.access_sala, source, sala);
-                }
-                else
-                {
-                    Debug.WriteLine("Error dimenssion!");
-                }
+                source = DrawString(cours.access_materia, source, curs);
+                source = DrawString(cours.acces_semigrupa, source, semigrupa);
+                source = DrawString(cours.access_profesor, source, profesor);
+                source = DrawString(cours.access_sala, source, sala);
 
             }
             return source;

@@ -22,6 +22,19 @@ namespace University_Schedule
 
         }
 
+        public static void Load_Data(List<Course> obj, string filename)
+        {
+
+
+
+
+
+
+
+
+
+        }
+
 
 
 
