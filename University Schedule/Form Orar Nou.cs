@@ -25,8 +25,8 @@ namespace University_Schedule
         private Brush color_select = Brushes.Aquamarine;
         private static List<Course> cursuri = new List<Course>();
         string group_number;
-
-
+        private static Tuple<int, int> data;
+        private static string day;
 
         public static List<Course> GetList()
         {
@@ -49,8 +49,56 @@ namespace University_Schedule
 
             for(int i=0; i<= valid_groups.Length-1;++i)
                 comboBox1.Items.Add(valid_groups[i]);
+        }
 
-
+        public void GetDataCourse()
+        {
+            switch(selected_rectagle.X / 188 + 1)
+            {
+                case 1:
+                    data = new Tuple<int, int>(8, 10);
+                    break;
+                case 2:
+                    data = new Tuple<int, int>(10, 12);
+                    break;
+                case 3:
+                    data = new Tuple<int, int>(12, 14);
+                    break;
+                case 4:
+                    data = new Tuple<int, int>(14, 16);
+                    break;
+                case 5:
+                    data = new Tuple<int, int>(16, 18);
+                    break;
+                case 6:
+                    data = new Tuple<int, int>(18, 20);
+                    break;
+                default:
+                    data = new Tuple<int, int>(0, 0);
+                    break;
+            }
+            switch (selected_rectagle.Y / 128 + 1)
+            {
+                case 1:
+                    day = "Luni";
+                    break;
+                case 2:
+                    day = "Marti";
+                    break;
+                case 3:
+                    day = "Miercuri";
+                    break;
+                case 4:
+                    day = "Joi";
+                    break;
+                case 5:
+                    day = "Vineri";
+                    break;
+              
+                default:
+                    day = "Error";
+                    break;
+            }
         }
         
         private void DrawAllRectanglesSelected()
@@ -63,6 +111,22 @@ namespace University_Schedule
             pictureBox1.Image = bmp;
         }
 
+        private Point GetMin_inArray()
+        {
+            int min_x = point[0].X;
+            int min_y = point[0].Y;
+            for (int i = 1; i < indexPoint; i++)
+            {
+                min_x = Math.Min(min_x, point[i].X);
+                min_y = Math.Min(min_y, point[i].Y);
+            }
+            return (new Point(min_x, min_y));
+        }
+        private Size GetMax_sizeArray()
+        {
+            return (new Size((indexPoint-2) * 94, (indexPoint-2) * 32));
+        }
+        //new RectangleF(point[0], new SizeF(indexPoint  +94, indexPoint  +32)
         private Point GetMin_possition()
         {
             int min_x = point[0].X;
@@ -91,7 +155,6 @@ namespace University_Schedule
                 max_y = selected_rectagle.Height;
             }
             return (new Size(max_x, max_y));
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -127,16 +190,21 @@ namespace University_Schedule
             }
             else
             {
-                DrawAllRectanglesSelected();
+                selected_rectagle = new Rectangle(GetMin_inArray(), GetMax_sizeArray());
+                using (Graphics graph = Graphics.FromImage(bmp))
+                {
+                    graph.FillRectangle(color_select, selected_rectagle);
+                }
                 indexPoint = 0;
                 if (form.DialogResult == DialogResult.OK)
                 {
-                    bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, new RectangleF(point[0], new SizeF(indexPoint  +94, indexPoint  +32)));
+                    bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
                 }
                 pictureBox1.Image = bmp;
             }
             isStarted = false;
             indexPoint = 0;
+            GetDataCourse();
             //bmp.Save("group_" + group_number + ".png");
         }
 
@@ -144,7 +212,7 @@ namespace University_Schedule
         {
             base.OnLoad(e);
         }
-
+        bool isClick = false;
          private void pictureBox1_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = e as MouseEventArgs;
@@ -154,6 +222,7 @@ namespace University_Schedule
                 clickOrSelected = "click";
                 point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
                 indexPoint++;
+                isClick = true;
             }
         }
         private Point RectStartPoint;
@@ -217,6 +286,7 @@ namespace University_Schedule
             if (Rect.Size.Width >= 2 || Rect.Height >= 2)
             {
                 clickOrSelected = "selected";
+                isClick = false;
             }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -235,12 +305,12 @@ namespace University_Schedule
             
             Invalidate();
         }
-        
+
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (pictureBox1.Image != null)
             {
-                if (Rect != null && Rect.Width > 0 && Rect.Height > 0 && isDrawing)
+                if (Rect != null && Rect.Width > 0 && Rect.Height > 0 && isDrawing && !isClick)
                 {
                     selected_rectagle = Rect;
                     e.Graphics.FillRectangle(selectionBrush, Rect);
