@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 /// <summary>
 /// Daca nu se introduce data in insert_data tot coloreaza patratul selectat
@@ -44,11 +45,13 @@ namespace University_Schedule
             InitializeComponent();
             point = new Point[20]; 
             indexPoint = 0; 
-            bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
             pictureBox1.Image = bmp;
 
             for(int i=0; i<= valid_groups.Length-1;++i)
                 comboBox1.Items.Add(valid_groups[i]);
+
+            comboBox1.Text = "101";
+
         }
 
         public void GetDataCourse()
@@ -205,7 +208,6 @@ namespace University_Schedule
             isStarted = false;
             indexPoint = 0;
             GetDataCourse();
-            //bmp.Save("group_" + group_number + ".png");
         }
 
         protected override void OnLoad(EventArgs e)
@@ -322,6 +324,8 @@ namespace University_Schedule
         {
 
             SaveXML.Save_Data(cursuri, "grupa_" + group_number +".xml");
+
+            bmp.Save("group_" + group_number + ".png");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -341,6 +345,32 @@ namespace University_Schedule
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             group_number = comboBox1.Text;
+
+            cursuri = SaveXML.Load_Data(cursuri, "grupa_" + group_number + ".xml");
+
+
+            if (File.Exists("group_" + group_number + ".png"))
+            {
+
+                Bitmap img;
+                using (var bmpTemp = new Bitmap("group_" + group_number + ".png"))
+                {
+                    img = new Bitmap(bmpTemp);
+                }
+                bmp = img;
+                pictureBox1.Image = img;
+                File.Delete("group_" + group_number + ".png");
+            }
+            else
+            {
+                bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
+                pictureBox1.Image = bmp;
+            }
+
+
+            bmp.Save("group_" + group_number + ".png");
+
+
         }
-    }
+}
 }

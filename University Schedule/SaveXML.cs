@@ -19,19 +19,27 @@ namespace University_Schedule
             TextWriter writer = new StreamWriter(filename);
             sr.Serialize(writer, obj);
             writer.Close();
+            writer.Dispose();
 
         }
 
-        public static void Load_Data(List<Course> obj, string filename)
+        public static List<Course> Load_Data(List<Course> obj, string filename)
         {
 
+            if (File.Exists(filename))
+            {
+                XmlSerializer sr = new XmlSerializer(obj.GetType());
+                FileStream read = new FileStream(filename, FileMode.Open,FileAccess.Read,FileShare.Read);
+                List<Course> lista = (List<Course>)sr.Deserialize(read);
+                read.Close();
+                return lista;
 
+            }
 
+            List<Course> lista1 = new List<Course>() ;
+            return lista1;
 
-
-
-
-
+    
 
         }
 
