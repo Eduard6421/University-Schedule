@@ -43,6 +43,16 @@ namespace University_Schedule
 
         }
 
+        public static List<Course> Delete_Last_Entry(List<Course> obj)
+        {
+            obj.RemoveRange(obj.Count - 1, 1);
+            return obj;
+
+
+
+
+        }
+
 
 
 

@@ -49,6 +49,7 @@ namespace University_Schedule
         private bool deselected = false;
         private bool isClick    = false;
         private bool isRight    = false;
+        private bool first_click = true;
 
         private string clickOrSelected = string.Empty;
     
@@ -263,24 +264,37 @@ namespace University_Schedule
                 indexPoint++;
                 isClick = true;
             }
+
+
         }
    
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            
+            if (e.Button == MouseButtons.Right && !first_click)
             {
+                if (pictureBox1.Image != copy)
+                   cursuri = SaveXML.Delete_Last_Entry(cursuri);
 
                 bmp = copy;
                 pictureBox1.Image = copy;
+
+
                 isRight = true;
                 if (indexPoint == 0)
                 {
                     selected_rectagle = new Rectangle();
+
                 }
                 else
                 {
                     indexPoint--;
+
                 }
+
+
+
+
                 return;
             }
 
@@ -291,12 +305,15 @@ namespace University_Schedule
                 bmp = copy;
                 pictureBox1.Image = copy;
             }*/
+
             isStarted = true;
             copy = bmp.Clone() as Bitmap;
 
             RectStartPoint = e.Location;
             isDrawing = true;
             selected_rectagle = new Rectangle();
+
+            first_click = false;
 
             Invalidate();
         }
@@ -399,9 +416,6 @@ namespace University_Schedule
             group_number = comboBox1.Text;
 
             cursuri = SaveXML.Load_Data(cursuri, "grupa_" + group_number + ".xml");
-
-        
-
 
             if (File.Exists("group_" + group_number + ".png"))
             {

@@ -14,32 +14,4 @@
     <access_ora />
     <acces_semigrupa />
   </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora />
-    <acces_semigrupa />
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora />
-    <acces_semigrupa />
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora />
-    <acces_semigrupa />
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora />
-    <acces_semigrupa />
-  </Course>
 </ArrayOfCourse>
