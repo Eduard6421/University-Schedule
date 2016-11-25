@@ -48,6 +48,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -197,7 +199,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(241, 727);
+            this.button1.Location = new System.Drawing.Point(231, 724);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -208,7 +210,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(134, 732);
+            this.label12.Location = new System.Drawing.Point(134, 729);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 13);
             this.label12.TabIndex = 9;
@@ -216,7 +218,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(323, 727);
+            this.button2.Location = new System.Drawing.Point(312, 724);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
@@ -227,7 +229,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(646, 732);
+            this.label13.Location = new System.Drawing.Point(646, 729);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 12;
@@ -235,7 +237,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(718, 727);
+            this.button3.Location = new System.Drawing.Point(718, 724);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 13;
@@ -247,12 +249,31 @@
             // 
             this.comboBox1.DisplayMember = "101";
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(448, 724);
+            this.comboBox1.Location = new System.Drawing.Point(481, 725);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 14;
             this.comboBox1.ValueMember = "101";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1122, 719);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 32);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Reset Schedule";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(408, 728);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "Select Group";
             // 
             // panel1
             // 
@@ -322,5 +343,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label14;
     }
 }

@@ -4,14 +4,24 @@
     <access_profesor />
     <access_sala />
     <access_materia />
-    <access_ora />
-    <acces_semigrupa />
+    <access_ora>10 - 18</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
   </Course>
   <Course>
     <access_profesor />
     <access_sala />
     <access_materia />
-    <access_ora />
-    <acces_semigrupa />
+    <access_ora>12 - 19</access_ora>
+    <access_semigrupa />
+    <access_zi>Miercuri</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>9 - 18</access_ora>
+    <access_semigrupa />
+    <access_zi>Miercuri</access_zi>
   </Course>
 </ArrayOfCourse>

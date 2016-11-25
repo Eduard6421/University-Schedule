@@ -58,8 +58,8 @@ namespace University_Schedule
         private string group_number;
 
 
-        private static Tuple<int, int> data;
-        private static string day;
+        public static Tuple<int, int> data;
+        public static string day;
 
         private Brush color_select = Brushes.Aquamarine;
         private Color color_select_forProf = Color.Aquamarine;
@@ -135,30 +135,19 @@ namespace University_Schedule
 
         public void GetDataCourse()
         {
-            switch(selected_rectagle.X / 188 + 1)
-            {
-                case 1:
-                    data = new Tuple<int, int>(8, 10);
-                    break;
-                case 2:
-                    data = new Tuple<int, int>(10, 12);
-                    break;
-                case 3:
-                    data = new Tuple<int, int>(12, 14);
-                    break;
-                case 4:
-                    data = new Tuple<int, int>(14, 16);
-                    break;
-                case 5:
-                    data = new Tuple<int, int>(16, 18);
-                    break;
-                case 6:
-                    data = new Tuple<int, int>(18, 20);
-                    break;
-                default:
-                    data = new Tuple<int, int>(0, 0);
-                    break;
-            }
+
+            int start_hour;
+            int end_hour;
+            start_hour = selected_rectagle.X / 94                 ;
+            end_hour = start_hour + (selected_rectagle.Width / 94);
+
+            start_hour = start_hour + 8;
+            end_hour = end_hour + 9;
+
+
+            data = new Tuple<int, int>(start_hour, end_hour);
+
+
             switch (selected_rectagle.Y / 128 + 1)
             {
                 case 1:
@@ -368,6 +357,7 @@ namespace University_Schedule
 
             first_click = false;
 
+
             Invalidate();
         }
 
@@ -440,6 +430,12 @@ namespace University_Schedule
                 pictureBox1.Image = bmp;
             }
             clickOrSelected = string.Empty;
+
+
+
+            GetDataCourse();
+           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -495,6 +491,19 @@ namespace University_Schedule
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            cursuri = SaveXML.Delete_List(cursuri);
+            SaveXML.Save_Data(cursuri, "grupa_" + group_number + ".xml");
+
+
+            bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
+            bmp.Save("group_" + group_number + ".png");
+
+            pictureBox1.Image = bmp;
+
+        }
     }
 
 }

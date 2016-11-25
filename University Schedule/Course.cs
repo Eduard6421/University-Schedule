@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace University_Schedule
 {
-     public class Course
+    public class Course
     {
 
         private string profesor;
@@ -14,32 +14,39 @@ namespace University_Schedule
         private string materia;
         private string ora;
         private string semigrupa;
+        private string zi;
 
-
-
-
-
-
-
-        public string access_profesor {
+        public string access_profesor
+        {
             get { return profesor; }
             set { profesor = value; }
         }
-        public string access_sala {
+        public string access_sala
+        {
             get { return sala; }
             set { sala = value; }
         }
-        public string access_materia {
+        public string access_materia
+        {
             get { return materia; }
             set { materia = value; }
         }
-        public string access_ora{
+        public string access_ora
+        {
             get { return ora; }
             set { ora = value; }
         }
-        public string acces_semigrupa {
+        public string access_semigrupa
+        {
             get { return semigrupa; }
             set { semigrupa = value; }
         }
+
+        public string access_zi
+        { get { return zi; }
+          set { zi = value; }
+        }
+
+
     }
 }
