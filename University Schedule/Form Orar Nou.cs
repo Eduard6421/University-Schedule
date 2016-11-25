@@ -360,7 +360,7 @@ namespace University_Schedule
         {
             if (e.Button == MouseButtons.Right)
             {
-                return;//sunt contrabandist
+                return;//sunt contrabandist asd
             }
             if (clickOrSelected == "selected")
             {
