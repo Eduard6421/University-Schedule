@@ -20,7 +20,7 @@ namespace University_Schedule
             sr.Serialize(writer, obj);
             writer.Close();
             writer.Dispose();
-
+            //med
         }
 
         public static List<Course> Load_Data(List<Course> obj, string filename)
