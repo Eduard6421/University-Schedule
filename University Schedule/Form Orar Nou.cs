@@ -441,6 +441,18 @@ namespace University_Schedule
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            cursuri = SaveXML.Delete_List(cursuri);
+
+            Debug.WriteLine("penis");
+
+            bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
+
+            pictureBox1.Image = bmp;
+
+        }
     }
 
 }

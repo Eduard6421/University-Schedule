@@ -46,12 +46,17 @@ namespace University_Schedule
         {
             obj.RemoveRange(obj.Count - 1, 1);
             return obj;
+        }
 
+        public static List<Course> Delete_List(List<Course> obj)
+        {
 
+            obj.RemoveRange(0, obj.Count);
+
+            return obj;
 
 
         }
-
 
 
 
