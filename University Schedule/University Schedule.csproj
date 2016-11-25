@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassRoom.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Drawing.cs" />
     <Compile Include="Form Orar Nou.cs">

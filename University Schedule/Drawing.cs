@@ -75,7 +75,7 @@ namespace University_Schedule
 
                 }
                 source = DrawString(cours.access_materia, source, curs);
-                source = DrawString(cours.acces_semigrupa, source, semigrupa);
+                source = DrawString(cours.access_semigrupa, source, semigrupa);
                 source = DrawString(cours.access_profesor, source, profesor);
                 source = DrawString(cours.access_sala, source, sala);
 
