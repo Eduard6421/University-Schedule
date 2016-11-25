@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using University_Schedule.Properties;
+using System.Timers;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// Daca nu se introduce data in insert_data tot coloreaza patratul selectat
@@ -60,8 +62,10 @@ namespace University_Schedule
         private static string day;
 
         private Brush color_select = Brushes.Aquamarine;
-        private static List<Course> cursuri = new List<Course>();
+        private Color color_select_forProf = Color.Aquamarine;
 
+        private static List<Course> cursuri = new List<Course>();
+        
 
         public Form_Orar_Nou()
         {
@@ -75,7 +79,53 @@ namespace University_Schedule
 
             comboBox1.Text = "101";
 
+            
+
+           
+
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
         }
+
+        void InsertProf()
+        {
+            label[i] = new Label();
+            label[i].Text = curs.access_profesor;
+            label[i].Visible = true;
+            label[i].Location = new Point(10, i * 15);
+            label[i].Height = 20;
+            label[i].Width = panel1.Size.Width;
+            label[i].BackColor = color_select_forProf;
+            label[i].MouseDown += label_mouseDown;
+            label[i].Font = new Font("Arial", 13);
+            label[i].Show();
+            repetition++;
+            panel1.Controls.Add(label[i]);
+            i++;
+        }
+
+        string prof_selectat = string.Empty;
+        Label[] label = new Label[25];
+        int repetition = 0, i = 0;
+        private void label_mouseDown(object sender, MouseEventArgs e)
+        {
+            Point p = new Point();
+            Drawing.GetCursorPos(ref p);
+            Color color = Drawing.GetPixelColor(p.X,p.Y);
+
+            Brush dd = new SolidBrush(color);
+            Bitmap a = Drawing.DrawRectangleOnImage(100,100);
+            using (Graphics d = Graphics.FromImage(a))
+            {
+                d.FillRectangle(dd, new Rectangle(new Point(0, 0), new Size(100, 100)));
+            }
+            pictureBox2.Image = a;
+            color_select = new SolidBrush(color);
+
+            prof_selectat = (sender as Label).Text;
+            MessageBox.Show(prof_selectat);
+        }
+
 
 
         public static List<Course> GetList()
@@ -242,6 +292,13 @@ namespace University_Schedule
             isStarted = false;
             indexPoint = 0;
             GetDataCourse();
+            bool insert = true;
+            for (int j = 0; j < i; j++)
+                if (label[i].Text.Contains(prof_selectat))
+                    insert = false;
+            if(insert)
+                InsertProf();
+            
         }
 
         protected override void OnLoad(EventArgs e)
@@ -291,20 +348,16 @@ namespace University_Schedule
                     indexPoint--;
 
                 }
-
-
-
-
                 return;
             }
 
             isRight = false;
 
-           /* if (isStarted == true && deselected)
+            if (isStarted == true && deselected)
             {
                 bmp = copy;
                 pictureBox1.Image = copy;
-            }*/
+            }
 
             isStarted = true;
             copy = bmp.Clone() as Bitmap;
@@ -408,6 +461,7 @@ namespace University_Schedule
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 color_select = new SolidBrush(colorDlg.Color);
+                color_select_forProf = colorDlg.Color;
             }
         }
 
