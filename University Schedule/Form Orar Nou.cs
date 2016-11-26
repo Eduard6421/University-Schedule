@@ -30,11 +30,7 @@ namespace University_Schedule
 
         private Bitmap bmp;
         private Bitmap copy;
-
-
-        Point[] point;
-        private int indexPoint;
-
+        
         
         private Point pointStart    ;
         private Point endPoint      ;
@@ -47,14 +43,10 @@ namespace University_Schedule
        
 
         private bool isDrawing         ;
-        private bool draw_sel          ;
         private bool isStarted  = false;
         private bool deselected = false;
-        private bool isClick    = false;
         private bool isRight    = false;
-        private bool first_click = true;
-
-        private string clickOrSelected = string.Empty;
+        
     
         private string group_number;
 
@@ -66,23 +58,43 @@ namespace University_Schedule
         private Color color_select_forProf = Color.Aquamarine;
 
         private static List<Course> cursuri = new List<Course>();
-         private List<string> profesori = new List<string>();
+        private List<string> profesori = new List<string>();
+        string prof_selectat = string.Empty;
+        Label[] label = new Label[25];
+        int repetition = 0, i = 0;
+
 
         public Form_Orar_Nou()
         {
             InitializeComponent();
-            point = new Point[20]; 
-            indexPoint = 0; 
-            pictureBox1.Image = bmp;
 
-            for(int i=0; i<= valid_groups.Length-1;++i)
+         
+
+
+            for (int i=0; i<= valid_groups.Length-1;++i)
                 comboBox1.Items.Add(valid_groups[i]);
 
             comboBox1.Text = "101";
 
-            
 
-           
+            if (File.Exists("group_101.png"))
+            {
+                cursuri = SaveXML.Load_Data(cursuri, "grupa_101.xml");
+                Bitmap img;
+                using (var bmpTemp = new Bitmap("group_101.png"))
+                {
+                    img = new Bitmap(bmpTemp);
+                }
+                bmp = img;
+                pictureBox1.Image = img;
+                File.Delete("group_101.png");
+            }
+            else
+            {
+                bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
+                pictureBox1.Image = bmp;
+            }
+
 
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
@@ -105,9 +117,6 @@ namespace University_Schedule
             i++;
         }
 
-        string prof_selectat = string.Empty;
-        Label[] label = new Label[25];
-        int repetition = 0, i = 0;
         private void label_mouseDown(object sender, MouseEventArgs e)
         {
             Point p = new Point();
@@ -124,11 +133,8 @@ namespace University_Schedule
             color_select = new SolidBrush(color);
 
             prof_selectat = (sender as Label).Text;
-
-
-            MessageBox.Show(prof_selectat);
+            
         }
-
 
         public static List<Course> GetList()
         {
@@ -173,64 +179,7 @@ namespace University_Schedule
                     break;
             }
         }
-        
-        private void DrawAllRectanglesSelected()
-        {
-            for (int i = 0; i < indexPoint; i++)
-            {
-                bmp = Drawing.FillRectangleWithAColor(point[i], new Size(94, 32), bmp, color_select);
-                
-            }
-            pictureBox1.Image = bmp;
-        }
-
-        private Point GetMin_inArray()
-        {
-            int min_x = point[0].X;
-            int min_y = point[0].Y;
-            for (int i = 1; i < indexPoint; i++)
-            {
-                min_x = Math.Min(min_x, point[i].X);
-                min_y = Math.Min(min_y, point[i].Y);
-            }
-            return (new Point(min_x, min_y));
-        }
-
-        private Size GetMax_sizeArray()
-        {
-            return (new Size((indexPoint-2) * 94, (indexPoint-2) * 32));
-        }
-
-        private Point GetMin_possition()
-        {
-            int min_x = point[0].X;
-            int min_y = point[0].Y;
-            for (int i = 1; i < indexPoint; i++)
-            {
-                min_x = Math.Min(min_x, point[i].X);
-                min_y = Math.Min(min_y, point[i].Y);
-            }
-
-            return (new Point(Math.Min(min_x, selected_rectagle.X), Math.Min(min_y, selected_rectagle.Y)));
-        }
-
-        private Size GetMax_size()
-        {
-            int max_x;
-            int max_y;
-            if (selected_rectagle.Width == (indexPoint) * 94)
-            {
-                max_x = selected_rectagle.Width;
-                max_y = (indexPoint - 1) * 32 + selected_rectagle.Height;
-            }
-            else
-            {
-                max_x = selected_rectagle.Width + (indexPoint - 1) * 94;
-                max_y = selected_rectagle.Height;
-            }
-            return (new Size(max_x, max_y));
-        }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
             if (isStarted)
@@ -238,56 +187,23 @@ namespace University_Schedule
                 curs = new Course();
                 var form = new Insert_Course(curs);
                 form.ShowDialog();
-                selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
 
                 if (prof_selectat != string.Empty)
                     curs.access_profesor = prof_selectat;
 
-                if (!isRight || indexPoint > 0)
+             
+                using (Graphics graph = Graphics.FromImage(bmp))
                 {
-                    if (!draw_sel)
-                    {
-                        if (indexPoint > 0)
-                        {
-                            Point st = GetMin_possition();
-                            Size sz = GetMax_size();
-                            selected_rectagle = new Rectangle(st, sz);
-                            using (Graphics graph = Graphics.FromImage(bmp))
-                            {
-                                graph.FillRectangle(color_select, selected_rectagle);
-                            }
-                            indexPoint = 0;
-                        }
-                        using (Graphics graph = Graphics.FromImage(bmp))
-                        {
-                            graph.FillRectangle(color_select, selected_rectagle);
-                        }
-                        if (form.DialogResult == DialogResult.OK)
-                        {
-                            // bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
-                            bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
-                        }
-                        pictureBox1.Image = bmp;
-                    }
-                    else
-                    {
-                        selected_rectagle = new Rectangle(GetMin_inArray(), GetMax_sizeArray());
-                        using (Graphics graph = Graphics.FromImage(bmp))
-                        {
-                            graph.FillRectangle(color_select, selected_rectagle);
-                        }
-                        indexPoint = 0;
-                        if (form.DialogResult == DialogResult.OK)
-                        {
-                            bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
-                        }
-                        pictureBox1.Image = bmp;
-                    }
+                   graph.FillRectangle(color_select, selected_rectagle);
                 }
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
+                }
+                pictureBox1.Image = bmp;
 
-                isRight = false;
+                deselected = false;
                 isStarted = false;
-                indexPoint = 0;
                 GetDataCourse();
 
                 if (i == 0)
@@ -315,70 +231,36 @@ namespace University_Schedule
         {
             base.OnLoad(e);
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs me = e as MouseEventArgs;
-            Point coordinates = me.Location;
-            if (me.Button == MouseButtons.Right)
-            {
-                return;
-            }
-            if (clickOrSelected != "selected")
-            {
-                clickOrSelected = "click";
-                point[indexPoint] = Drawing.SearchForMatch(coordinates.X, coordinates.Y);
-                indexPoint++;
-                isClick = true;
-            }
-
-
-        }
    
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            
-            if (e.Button == MouseButtons.Right && !first_click)
+            if (e.Button == MouseButtons.Right)
             {
-                if (pictureBox1.Image != copy)
-                   cursuri = SaveXML.Delete_Last_Entry(cursuri);
-
-                bmp = copy;
-                pictureBox1.Image = copy;
-
-
-                isRight = true;
-                if (indexPoint == 0)
-                {
-                    selected_rectagle = new Rectangle();
-
-                }
-                else
-                {
-                    indexPoint--;
-
-                }
+                  if (isStarted && deselected)
+                  {
+                          bmp = copy;
+                          pictureBox1.Image = copy;
+                          isStarted = false;
+                          isRight = true;
+                          isDrawing = false;
+                          deselected = false;
+                    }
+                
                 return;
             }
-
-            isRight = false;
-
-            if (isStarted == true && deselected)
+            RectStartPoint = e.Location;
+            
+            if (isStarted && deselected)
             {
                 bmp = copy;
-                pictureBox1.Image = copy;
+                pictureBox1.Image = bmp;
+                Rect = new Rectangle();
             }
-
-            isStarted = true;
             copy = bmp.Clone() as Bitmap;
-
-            RectStartPoint = e.Location;
+            isStarted = true;
+            isRight = false;
             isDrawing = true;
-            selected_rectagle = new Rectangle();
-
-            first_click = false;
-
-
+            deselected = false;
             Invalidate();
         }
 
@@ -388,7 +270,6 @@ namespace University_Schedule
             {
                 return;
             }
-
             Point tempEndPoint = e.Location;
 
             Rect.Location = new Point(
@@ -400,19 +281,13 @@ namespace University_Schedule
                 Math.Abs(RectStartPoint.Y - tempEndPoint.Y));
 
             pictureBox1.Invalidate();
-
-            if (Rect.Size.Width >= 2 || Rect.Height >= 2)
-            {
-                clickOrSelected = "selected";
-                isClick = false;
-            }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (pictureBox1.Image != null)
             {
-                if (Rect != null && Rect.Width > 0 && Rect.Height > 0 && isDrawing && !isClick)
+                if (Rect != null && Rect.Width > 0 && Rect.Height > 0 && isDrawing && !isRight)
                 {
                     selected_rectagle = Rect;
                     e.Graphics.FillRectangle(selectionBrush, Rect);
@@ -422,46 +297,28 @@ namespace University_Schedule
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button != MouseButtons.Left)
             {
-                return;//sunt contrabandist asd
+                return;
             }
-            if (clickOrSelected == "selected")
+            pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
+            endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
+            selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
+
+            using (Graphics graph = Graphics.FromImage(bmp))
             {
-                isDrawing = false;
-                pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
-                endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
-
-                using (Graphics graph = Graphics.FromImage(bmp))
-                {
-                    graph.FillRectangle(selectionBrush, new Rectangle(pointStart, new Size(endPoint)));
-                }
-                pictureBox1.Image = bmp;
-                draw_sel = false;
-                deselected = true;
+               graph.FillRectangle(selectionBrush, selected_rectagle);
             }
-            else if (clickOrSelected == "click")
-            {
-                deselected = false;
-                draw_sel = true;
-                using (Graphics graph = Graphics.FromImage(bmp))
-                {
-                    graph.FillRectangle(selectionBrush, point[indexPoint - 1].X, point[indexPoint - 1].Y, 94, 32);
-                }
-                pictureBox1.Image = bmp;
-            }
-            clickOrSelected = string.Empty;
-
-
+            pictureBox1.Image = bmp;
+          
+            isDrawing = false;
+            deselected = true;
 
             GetDataCourse();
-           
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             SaveXML.Save_Data(cursuri, "grupa_" + group_number +".xml");
 
             bmp.Save("group_" + group_number + ".png");
@@ -484,6 +341,7 @@ namespace University_Schedule
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             group_number = comboBox1.Text;
 
             cursuri = SaveXML.Load_Data(cursuri, "grupa_" + group_number + ".xml");
