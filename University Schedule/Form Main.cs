@@ -57,5 +57,13 @@ namespace University_Schedule
         protected override void OnLoad(EventArgs e)
         {
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form test = new Form_Orar();
+            this.Hide();
+            test.Closed += (s, args) => this.Close();
+            test.Show();
+        }
     }
 }

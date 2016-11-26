@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using University_Schedule.Properties;
 
 namespace University_Schedule
 {
@@ -23,20 +24,28 @@ namespace University_Schedule
                 for (int j = 0; j <= Height; j += 32)
                 {
                     Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(94, 32)));
-                    g.DrawRectangle(new Pen(Brushes.Gray), rec);
+                    g.DrawRectangle(new Pen(Brushes.Black), rec);
                 }
 
             for (int i = 0; i <= Width; i += 188)
                 for (int j = 0; j <= Height; j += 128)
                 {
                     Rectangle rec = new Rectangle(new Point(i, j), new Size(new Point(188, 128)));
-                    g.DrawRectangle(new Pen(Brushes.DarkMagenta,2), rec);
+                    g.DrawRectangle(new Pen(Brushes.Black, 2), rec);
                     
                 }
             return img;
         }
 
-
+        public static Bitmap CombineImages(Bitmap bmp1)
+        {
+            Bitmap bmp = Resources.schema_orar;
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.DrawImage(bmp1, new Point(128, 149));
+            }
+            return bmp;
+        }
         
         public static Bitmap InsertDataInImage(Bitmap source,Brush color,Rectangle rec, Course cours)
         {
