@@ -1,27 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>10 - 18</access_ora>
-    <access_semigrupa />
-    <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>12 - 19</access_ora>
-    <access_semigrupa />
-    <access_zi>Miercuri</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>9 - 18</access_ora>
-    <access_semigrupa />
-    <access_zi>Miercuri</access_zi>
-  </Course>
-</ArrayOfCourse>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />

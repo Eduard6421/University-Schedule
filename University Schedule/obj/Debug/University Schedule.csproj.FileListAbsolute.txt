@@ -45,3 +45,7 @@ E:\GitHub\University-Schedule\University Schedule\obj\Debug\University_Schedule.
 E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.csproj.GenerateResource.Cache
 E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.exe
 E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.pdb
+E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.exe.manifest
+E:\GitHub\University-Schedule\University Schedule\bin\Debug\University Schedule.application
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.exe.manifest
+E:\GitHub\University-Schedule\University Schedule\obj\Debug\University Schedule.application

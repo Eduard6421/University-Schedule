@@ -44,6 +44,7 @@ namespace University_Schedule
         private Rectangle selected_rectagle;
 
         private Brush selectionBrush = new SolidBrush(Color.FromArgb(128, 72, 145, 220));
+       
 
         private bool isDrawing         ;
         private bool draw_sel          ;
@@ -65,7 +66,7 @@ namespace University_Schedule
         private Color color_select_forProf = Color.Aquamarine;
 
         private static List<Course> cursuri = new List<Course>();
-        
+         private List<string> profesori = new List<string>();
 
         public Form_Orar_Nou()
         {
@@ -111,10 +112,10 @@ namespace University_Schedule
         {
             Point p = new Point();
             Drawing.GetCursorPos(ref p);
-            Color color = Drawing.GetPixelColor(p.X,p.Y);
+            Color color = Drawing.GetPixelColor(p.X, p.Y);
 
             Brush dd = new SolidBrush(color);
-            Bitmap a = Drawing.DrawRectangleOnImage(100,100);
+            Bitmap a = Drawing.DrawRectangleOnImage(100, 100);
             using (Graphics d = Graphics.FromImage(a))
             {
                 d.FillRectangle(dd, new Rectangle(new Point(0, 0), new Size(100, 100)));
@@ -123,9 +124,10 @@ namespace University_Schedule
             color_select = new SolidBrush(color);
 
             prof_selectat = (sender as Label).Text;
+
+
             MessageBox.Show(prof_selectat);
         }
-
 
 
         public static List<Course> GetList()
@@ -231,63 +233,82 @@ namespace University_Schedule
 
         private void button1_Click(object sender, EventArgs e)
         {
-            curs = new Course();
-            var form = new Insert_Course(curs);
-            form.ShowDialog();
-            selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-
-            if (!isRight || indexPoint > 0)
+            if (isStarted)
             {
-                if (!draw_sel)
+                curs = new Course();
+                var form = new Insert_Course(curs);
+                form.ShowDialog();
+                selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
+
+                if (prof_selectat != string.Empty)
+                    curs.access_profesor = prof_selectat;
+
+                if (!isRight || indexPoint > 0)
                 {
-                    if (indexPoint > 0)
+                    if (!draw_sel)
                     {
-                        Point st = GetMin_possition();
-                        Size sz = GetMax_size();
-                        selected_rectagle = new Rectangle(st, sz);
+                        if (indexPoint > 0)
+                        {
+                            Point st = GetMin_possition();
+                            Size sz = GetMax_size();
+                            selected_rectagle = new Rectangle(st, sz);
+                            using (Graphics graph = Graphics.FromImage(bmp))
+                            {
+                                graph.FillRectangle(color_select, selected_rectagle);
+                            }
+                            indexPoint = 0;
+                        }
+                        using (Graphics graph = Graphics.FromImage(bmp))
+                        {
+                            graph.FillRectangle(color_select, selected_rectagle);
+                        }
+                        if (form.DialogResult == DialogResult.OK)
+                        {
+                            // bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
+                            bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
+                        }
+                        pictureBox1.Image = bmp;
+                    }
+                    else
+                    {
+                        selected_rectagle = new Rectangle(GetMin_inArray(), GetMax_sizeArray());
                         using (Graphics graph = Graphics.FromImage(bmp))
                         {
                             graph.FillRectangle(color_select, selected_rectagle);
                         }
                         indexPoint = 0;
+                        if (form.DialogResult == DialogResult.OK)
+                        {
+                            bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
+                        }
+                        pictureBox1.Image = bmp;
                     }
-                    using (Graphics graph = Graphics.FromImage(bmp))
-                    {
-                        graph.FillRectangle(color_select, selected_rectagle);
-                    }
-                    if (form.DialogResult == DialogResult.OK)
-                    {
-                        // bmp = Drawing.DrawString(curs.access_materia, pictureBox1.Image, selected_rectagle);
-                        bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
-                    }
-                    pictureBox1.Image = bmp;
+                }
+
+                isRight = false;
+                isStarted = false;
+                indexPoint = 0;
+                GetDataCourse();
+
+                if (i == 0)
+                {
+                    InsertProf();
+                    profesori.Add(curs.access_profesor);
                 }
                 else
                 {
-                    selected_rectagle = new Rectangle(GetMin_inArray(), GetMax_sizeArray());
-                    using (Graphics graph = Graphics.FromImage(bmp))
+                    if (!profesori.Contains(curs.access_profesor))
                     {
-                        graph.FillRectangle(color_select, selected_rectagle);
+                        InsertProf();
+                        profesori.Add(curs.access_profesor);
                     }
-                    indexPoint = 0;
-                    if (form.DialogResult == DialogResult.OK)
-                    {
-                        bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
-                    }
-                    pictureBox1.Image = bmp;
                 }
+                prof_selectat = string.Empty;
             }
-            isRight = false;
-            isStarted = false;
-            indexPoint = 0;
-            GetDataCourse();
-            bool insert = true;
-            for (int j = 0; j < i; j++)
-                if (label[i].Text.Contains(prof_selectat))
-                    insert = false;
-            if(insert)
-                InsertProf();
-            
+            else
+                return;
+
+
         }
 
         protected override void OnLoad(EventArgs e)
@@ -491,9 +512,8 @@ namespace University_Schedule
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click_1(object sender, EventArgs e)
         {
-
             cursuri = SaveXML.Delete_List(cursuri);
             SaveXML.Save_Data(cursuri, "grupa_" + group_number + ".xml");
 
@@ -503,7 +523,10 @@ namespace University_Schedule
 
             pictureBox1.Image = bmp;
 
+
+
         }
+
     }
 
 }
