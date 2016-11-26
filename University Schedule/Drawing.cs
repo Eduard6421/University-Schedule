@@ -46,8 +46,8 @@ namespace University_Schedule
             }
             return bmp;
         }
-        
-        public static Bitmap InsertDataInImage(Bitmap source,Brush color,Rectangle rec, Course cours)
+
+        public static Bitmap InsertDataInImage(Bitmap source, Brush color, Rectangle rec, Course cours)
         {
             Rectangle profesor;
             Rectangle curs;
@@ -55,34 +55,42 @@ namespace University_Schedule
             Rectangle semigrupa;
             using (Graphics graph = Graphics.FromImage(source))
             {
-                if (rec.Height == 32)
+                Debug.WriteLine(rec.Height);
+                if (rec.Height == 31)
                 {
                     curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
                     semigrupa = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4)), rec.Y + 1), new Size(rec.Width, rec.Height));
                     profesor = new Rectangle(new Point(rec.X + 1, rec.Y + (rec.Height / 2)), new Size(rec.Width, rec.Height));
                     sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4)), rec.Y + (rec.Height / 2)), new Size(rec.Width, rec.Height));
                 }
-                else if(rec.Height == 64)
+                else if (rec.Height == 63)
                 {
-                    curs = new Rectangle(new Point((rec.X + rec.Width/3 + 5), (rec.Y + rec.Height/3)), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height/4 + rec.Height/4+ rec.Height/4)), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4)-5), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4)), new Size(rec.Width, rec.Height));
-                }
-                else if(rec.Height == 128)
-                {
-                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 10), (rec.Y + rec.Height/3 +15)), new Size(rec.Width, rec.Height));
+                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 5), (rec.Y + rec.Height / 3)), new Size(rec.Width, rec.Height));
                     semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 4 + rec.Height / 4 + rec.Height / 4)), new Size(rec.Width, rec.Height));
+                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));
+                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 5), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4)), new Size(rec.Width, rec.Height));
+                }
+                else if (rec.Height == 95)
+                {
+                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 10), (rec.Y + rec.Height / 3 + 13)), new Size(rec.Width, rec.Height));
+                    semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 3 + rec.Height / 4 + rec.Height / 4)), new Size(rec.Width, rec.Height));
+                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 3), new Size(rec.Width, rec.Height));
+                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 3) + (rec.Width / 4) + (rec.Width / 4) - 55), rec.Y + (rec.Height / 5) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
+                }
+                else if (rec.Height == 127)
+                {
+                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 10), (rec.Y + rec.Height / 3 + 15)), new Size(rec.Width, rec.Height));
+                    semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 4 + rec.Height / 4 + rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
                     profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 3), new Size(rec.Width, rec.Height));
                     sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 55), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
                 }
                 else
                 {
-                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 10), (rec.Y + rec.Height / 3 + 15)), new Size(rec.Width, rec.Height));
-                    semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 4 + rec.Height / 4 + rec.Height / 4)), new Size(rec.Width, rec.Height));
-                    profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 3), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 55), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
-
+                    curs = new Rectangle();
+                    semigrupa = new Rectangle();
+                    profesor = new Rectangle();
+                    sala = new Rectangle();
+                    Debug.WriteLine("Error!");
                 }
                 source = DrawString(cours.access_materia, source, curs);
                 source = DrawString(cours.access_semigrupa, source, semigrupa);
@@ -92,7 +100,7 @@ namespace University_Schedule
             }
             return source;
         }
-      
+
         public static Rectangle SearchTypeCourse(Point start,int index)
         {
             return (new Rectangle(new Point(start.X +35,start.Y+15), new Size(index * 94, index * 32)));

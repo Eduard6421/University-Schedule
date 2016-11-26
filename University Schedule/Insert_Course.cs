@@ -46,7 +46,6 @@ namespace University_Schedule
             Form_Orar_Nou.GetList().Add(curs);
 
 
-
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

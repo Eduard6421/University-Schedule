@@ -8,4 +8,60 @@
     <access_semigrupa>d</access_semigrupa>
     <access_zi>Joi</access_zi>
   </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>8 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>18 - 20</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>8 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>18 - 20</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>8 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>18 - 20</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor />
+    <access_sala />
+    <access_materia />
+    <access_ora>12 - 14</access_ora>
+    <access_semigrupa />
+    <access_zi>Marti</access_zi>
+  </Course>
 </ArrayOfCourse>

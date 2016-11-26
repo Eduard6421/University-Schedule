@@ -6,20 +6,10 @@ using System.Threading.Tasks;
 
 namespace University_Schedule
 {
-    class ClassRoom
+    public class ClassRoom
     {
 
-
-
-
-
-
-
-
-
-
-
-
+       public bool is_empty = false ;
 
 
 

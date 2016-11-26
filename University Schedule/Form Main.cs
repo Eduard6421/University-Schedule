@@ -12,7 +12,7 @@ namespace University_Schedule
 {
     public partial class Form1 : Form
     {
-
+        
 
         /// <summary>
         /// HIIII
@@ -39,7 +39,10 @@ namespace University_Schedule
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Form form = new Form_Sali_Libere();
+            this.Hide();
+            form.Closed += (s, args) => this.Close();
+            form.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
