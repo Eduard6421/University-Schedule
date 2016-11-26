@@ -92,14 +92,19 @@ namespace University_Schedule
         public static Point SearchForMatch(int x,int y)
         {
             int xx = 0, yy = 0;
-            for(int i = 0;i<= 94 * 12;i+= 94)
+            if (x>94*12)
+                xx = 94 * 12;
+            if (y > 32 * 20)
+                yy = 32 * 20;    
+
+            for (int i = 0;i<= 94 * 12;i+= 94)
                 if(x<i)
                 {
                     xx = i;
                     xx -= 94;
                     break;
                 }
-            for(int i = 0;i< 32 * 20;i+= 32)
+            for(int i = 0;i<= 32 * 20;i+= 32)
                 if(y<i)
                 {
                     yy = i;

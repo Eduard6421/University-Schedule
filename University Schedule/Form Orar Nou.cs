@@ -279,7 +279,7 @@ namespace University_Schedule
             Rect.Size = new Size(
                 Math.Abs(RectStartPoint.X - tempEndPoint.X),
                 Math.Abs(RectStartPoint.Y - tempEndPoint.Y));
-
+         
             pictureBox1.Invalidate();
         }
 
@@ -304,7 +304,7 @@ namespace University_Schedule
             pointStart = Drawing.SearchForMatch(Rect.X, Rect.Y);
             endPoint = Drawing.SearchForMatch(Rect.Size.Width + 94, Rect.Size.Height + 32);
             selected_rectagle = new Rectangle(pointStart, new Size(endPoint));
-
+         
             using (Graphics graph = Graphics.FromImage(bmp))
             {
                graph.FillRectangle(selectionBrush, selected_rectagle);
