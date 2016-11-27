@@ -55,7 +55,6 @@ namespace University_Schedule
             Rectangle semigrupa;
             using (Graphics graph = Graphics.FromImage(source))
             {
-                Debug.WriteLine(rec.Height);
                 if (rec.Height == 31)
                 {
                     curs = new Rectangle(new Point(rec.X + 1, rec.Y + 1), new Size(rec.Width, rec.Height));

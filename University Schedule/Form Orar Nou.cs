@@ -367,6 +367,9 @@ namespace University_Schedule
 
         private void button5_Click(object sender, EventArgs e)
         {
+            bmp.Save("group_" + group_number + ".png");
+            SaveXML.Save_Data(cursuri, "grupa_" + group_number + ".xml");
+
             Form form = new Form1();
             this.Hide();
             form.Closed += (s, args) => this.Close();

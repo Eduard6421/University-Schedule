@@ -1,75 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Course>
-    <access_profesor>d</access_profesor>
-    <access_sala />
-    <access_materia>d</access_materia>
-    <access_ora>10 - 13</access_ora>
-    <access_semigrupa>d</access_semigrupa>
-    <access_zi>Joi</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>8 - 16</access_ora>
-    <access_semigrupa />
+    <access_profesor>guta</access_profesor>
+    <access_sala>121</access_sala>
+    <access_materia>Matematica</access_materia>
+    <access_ora>8 - 14</access_ora>
+    <access_semigrupa>x</access_semigrupa>
     <access_zi>Luni</access_zi>
   </Course>
   <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>18 - 20</access_ora>
-    <access_semigrupa />
+    <access_profesor>Salam</access_profesor>
+    <access_sala>121</access_sala>
+    <access_materia>Info</access_materia>
+    <access_ora>16 - 20</access_ora>
+    <access_semigrupa>2</access_semigrupa>
     <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>8 - 16</access_ora>
-    <access_semigrupa />
-    <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>18 - 20</access_ora>
-    <access_semigrupa />
-    <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>8 - 16</access_ora>
-    <access_semigrupa />
-    <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>18 - 20</access_ora>
-    <access_semigrupa />
-    <access_zi>Luni</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>12 - 14</access_ora>
-    <access_semigrupa />
-    <access_zi>Marti</access_zi>
-  </Course>
-  <Course>
-    <access_profesor />
-    <access_sala />
-    <access_materia />
-    <access_ora>10 - 12</access_ora>
-    <access_semigrupa />
-    <access_zi>Marti</access_zi>
   </Course>
 </ArrayOfCourse>

@@ -9,7 +9,7 @@ namespace University_Schedule
     public class ClassRoom
     {
 
-       public bool is_empty = false ;
+       public bool is_empty = true ;
 
 
 

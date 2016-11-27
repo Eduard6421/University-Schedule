@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace University_Schedule
 {
@@ -24,10 +25,11 @@ namespace University_Schedule
 
         public static List<Course> Load_Data(List<Course> obj, string filename)
         {
-
+            XmlSerializer sr = new XmlSerializer(obj.GetType());
+       
             if (File.Exists(filename))
             {
-                XmlSerializer sr = new XmlSerializer(obj.GetType());
+                
                 FileStream read = new FileStream(filename, FileMode.Open,FileAccess.Read,FileShare.Read);
                 List<Course> lista = (List<Course>)sr.Deserialize(read);
                 read.Close();
