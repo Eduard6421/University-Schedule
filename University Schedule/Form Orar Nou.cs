@@ -365,6 +365,14 @@ namespace University_Schedule
 
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form form = new Form1();
+            this.Hide();
+            form.Closed += (s, args) => this.Close();
+            form.Show();
+        }
+
         private void button4_Click_1(object sender, EventArgs e)
         {
             cursuri = SaveXML.Delete_List(cursuri);

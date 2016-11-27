@@ -78,5 +78,13 @@ namespace University_Schedule
     
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form test = new Form1();
+            this.Hide();
+            test.Closed += (s, args) => this.Close();
+            test.Show();
+        }
     }
 }
