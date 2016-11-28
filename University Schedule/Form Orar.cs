@@ -42,7 +42,7 @@ namespace University_Schedule
                 {
                     img = new Bitmap(bmpTemp);
                 }
-                img = Drawing.CombineImages(img);
+                img = Drawing.CombineImages(img,group_number);
                 pictureBox1.Image = img;
             }
             else

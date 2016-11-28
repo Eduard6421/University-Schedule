@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <access_profesor>Ilias P</access_profesor>
+    <access_sala>0(Haret)</access_sala>
+    <access_materia>Analiza</access_materia>
+    <access_ora>10 - 12</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Dobrobvat A</access_profesor>
+    <access_sala>221A</access_sala>
+    <access_materia>Alg&amp;StructDat</access_materia>
+    <access_ora>12 - 14</access_ora>
+    <access_semigrupa>Gr 1</access_semigrupa>
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Ilias P</access_profesor>
+    <access_sala>12</access_sala>
+    <access_materia>Analiza</access_materia>
+    <access_ora>14 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Bulacu D</access_profesor>
+    <access_sala>9</access_sala>
+    <access_materia>Algebra</access_materia>
+    <access_ora>14 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Cimpeanu V</access_profesor>
+    <access_sala>201</access_sala>
+    <access_materia>Alg&amp;StructDat</access_materia>
+    <access_ora>16 - 18</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Turlea A</access_profesor>
+    <access_sala>218</access_sala>
+    <access_materia>ArhSisCalcul</access_materia>
+    <access_ora>18 - 20</access_ora>
+    <access_semigrupa>Gr 1</access_semigrupa>
+    <access_zi>Luni</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Turlea A</access_profesor>
+    <access_sala>218</access_sala>
+    <access_materia>ArhSisCalcul</access_materia>
+    <access_ora>10 - 12</access_ora>
+    <access_semigrupa>Gr 2</access_semigrupa>
+    <access_zi>Marti</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Leustean L</access_profesor>
+    <access_sala>1(Stoilow)</access_sala>
+    <access_materia>LogMat&amp;comp</access_materia>
+    <access_ora>12 - 14</access_ora>
+    <access_semigrupa />
+    <access_zi>Marti</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Ceterchi R</access_profesor>
+    <access_sala>0(Haret)</access_sala>
+    <access_materia>Alg&amp;StructDat</access_materia>
+    <access_ora>14 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Marti</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Stefanescu Gh</access_profesor>
+    <access_sala>0(Haret)</access_sala>
+    <access_materia>ArhSistCalcul</access_materia>
+    <access_ora>16 - 18</access_ora>
+    <access_semigrupa />
+    <access_zi>Marti</access_zi>
+  </Course>
+  <Course>
+    <access_profesor>Stefanescu Gh</access_profesor>
+    <access_sala>8</access_sala>
+    <access_materia>ArhSistCalcul</access_materia>
+    <access_ora>18 - 20</access_ora>
+    <access_semigrupa />
+    <access_zi>Marti</access_zi>
+  </Course>
+</ArrayOfCourse>

@@ -36,14 +36,23 @@ namespace University_Schedule
                 }
             return img;
         }
-
-        public static Bitmap CombineImages(Bitmap bmp1)
+        //725,10
+        public static Bitmap CombineImages(Bitmap bmp1,string number)
         {
             Bitmap bmp = Resources.schema_orar;
-            using (Graphics g = Graphics.FromImage(bmp))
-            {
-                g.DrawImage(bmp1, new Point(128, 149));
-            }
+
+            Graphics g = Graphics.FromImage(bmp);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+            g.DrawString(number, new Font("Segoe", 30), Brushes.Black, new PointF(720, 10));
+
+
+            g.Flush();
+            
+            g.DrawImage(bmp1, new Point(128, 149));
+           
             return bmp;
         }
 
@@ -78,7 +87,7 @@ namespace University_Schedule
                 }
                 else if (rec.Height == 127)
                 {
-                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 + 10), (rec.Y + rec.Height / 3 + 15)), new Size(rec.Width, rec.Height));
+                    curs = new Rectangle(new Point((rec.X + rec.Width / 3 - 5), (rec.Y + rec.Height / 3 + 15)), new Size(rec.Width, rec.Height));
                     semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 4 + rec.Height / 4 + rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
                     profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 3), new Size(rec.Width, rec.Height));
                     sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 55), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
