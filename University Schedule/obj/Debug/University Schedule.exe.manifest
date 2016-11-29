@@ -42,17 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="72640">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="93632">
       <assemblyIdentity name="University Schedule" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xEU9LCQn1HB95lfnw0WWKf2xjJ2Pw+SUlkU7dGcxolQ=</dsig:DigestValue>
+        <dsig:DigestValue>RUitQGVtZxXts3uVYUEddCU3RYznhLtWqkfSEw1ftUg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Resources\copy.png" size="20180">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ZSK/jJLblY+oevfoR8ZOrSRaUWyo/wsAcjkmyOv6kWU=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="University Schedule.exe.config" size="189">
     <hash>
       <dsig:Transforms>

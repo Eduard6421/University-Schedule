@@ -91,8 +91,7 @@ namespace University_Schedule
                 bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
                 pictureBox1.Image = bmp;
             }
-
-
+            
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
         }
@@ -375,6 +374,26 @@ namespace University_Schedule
             form.Closed += (s, args) => this.Close();
             form.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (isStarted)
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    Rectangle r = new Rectangle(selected_rectagle.X, selected_rectagle.Y, selected_rectagle.Width, selected_rectagle.Height);
+                    Bitmap copyy = new Bitmap(Resources.copy);
+                    Bitmap croppedImage = copyy.Clone(r, copyy.PixelFormat);
+
+                    g.DrawImage(croppedImage, selected_rectagle);
+                    pictureBox1.Image = bmp;
+                }
+                isStarted = false;
+                isRight = true;
+                isDrawing = false;
+                deselected = false;
+            }
+       }
 
         private void button4_Click_1(object sender, EventArgs e)
         {

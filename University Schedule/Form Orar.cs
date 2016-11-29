@@ -24,7 +24,7 @@ namespace University_Schedule
                 comboBox1.Items.Add(Form_Orar_Nou.valid_groups[i]);
 
             comboBox1.Text = "101";
-
+            
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
