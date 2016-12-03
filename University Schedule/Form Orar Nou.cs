@@ -175,6 +175,27 @@ namespace University_Schedule
                     break;
             }
         }
+
+        public void Delete_Course()
+        {
+            Course temp = new Course();
+
+            temp.access_zi = day;
+            temp.access_ora = data.Item1 + " - " + data.Item2;
+
+
+            for (int i = 0; i < cursuri.Count; ++i)
+                if (cursuri[i].access_zi == day && cursuri[i].access_ora == data.Item1 + " - " + data.Item2)
+                    break;
+
+            if (i < cursuri.Count)
+            {
+                cursuri.RemoveAt(i);
+
+            }
+
+        }
+
        
         private void button1_Click(object sender, EventArgs e)
         {
@@ -387,6 +408,12 @@ namespace University_Schedule
 
                     g.DrawImage(croppedImage, selected_rectagle);
                     pictureBox1.Image = bmp;
+                    GetDataCourse();
+                    Delete_Course();
+
+
+
+
                 }
                 isStarted = false;
                 isRight = true;
