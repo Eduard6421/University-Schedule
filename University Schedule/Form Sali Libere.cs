@@ -48,19 +48,50 @@ namespace University_Schedule
         }
 
 
-        private void Find_FreeHours()
+        private void Find_FreeHours(string day,int sala)
          {
+
+            int i;
+            int j;
+            bool is_valid = false;
+
+            for(i=0;i<24;++i)
+            {
+                if(sali[zi,Array.IndexOf(numar_sala,sala),i].is_empty == true && i>7 && i< 22)
+                {
+                    j = i + 1;
+                    ListViewItem temp = new ListViewItem(sala.ToString());
+                    temp.SubItems.Add(day);
+                    temp.SubItems.Add(i + " - " + j);
+                    listView1.Items.Add(temp);
+
+                    is_valid = true;
+                }
+
+            }
+
+            if (is_valid == false)
+
+            {
+                ListViewItem temp = new ListViewItem(sala.ToString());
+                temp.SubItems.Add(day);
+                temp.SubItems.Add("Nici o ora libera");
+
+
+
+            }
 
 
 
 
 
          }
-        public void Find_Class(string day)
+        public void Find_Class(string day,int sala)
+
         {
 
             int i, j;
-            bool is_valid = false;
+            bool is_valid;
 
             for (i = 0; i < numar_sala.Length; ++i)
             {
@@ -115,7 +146,8 @@ namespace University_Schedule
             else
             {
                 ListViewItem temp = new ListViewItem(sala.ToString());
-                temp.SubItems.Add("No Classroom Available");
+                temp.SubItems.Add("Ocupat");
+                listView1.Items.Add(temp);
 
             }
 
@@ -165,55 +197,57 @@ namespace University_Schedule
                 default: zi = -1; break;
             }
 
-
-            try
+            if (zi > 0)
             {
-                sala = int.Parse(classroom);
+                try
+                {
+                    sala = int.Parse(classroom);
 
-            }
+                }
 
-            catch (System.FormatException)
-            {
-                Debug.WriteLine("Invalid Class");
+                catch (System.FormatException)
+                {
+                    Debug.WriteLine("Invalid Class");
+                    try
+                    {
+
+                        ora_inceput = int.Parse(hour_start);
+                        ora_final = int.Parse(hour_end);
+                        Find_Class(day, sala);
+                        return;
+                    }
+
+                    catch
+                    {
+
+                        Debug.WriteLine("Everything Wong");
+                        return;
+
+                    }
+
+
+                }
+
                 try
                 {
 
                     ora_inceput = int.Parse(hour_start);
                     ora_final = int.Parse(hour_end);
-                    Find_Class(day);
-                    return;
+                    Is_Class_Free(day, sala, ora_inceput, ora_final);
                 }
 
                 catch
                 {
 
-                    Debug.WriteLine("Everything Wong");
+                    Debug.WriteLine("Invalid Hours");
+                    Find_FreeHours(day, sala);
                     return;
 
+
                 }
-                
 
             }
-
-            try
-            {
-
-                ora_inceput = int.Parse(hour_start);
-                ora_final = int.Parse(hour_end);
-                Is_Class_Free(day,sala,ora_inceput,ora_final);
-            }
-
-            catch 
-            {
-
-                Debug.WriteLine("Invalid Hours");
-                Find_FreeHours();
-                return;
-
-
-            }
-
-            
+           
 
 
         }
