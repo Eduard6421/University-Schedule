@@ -208,11 +208,19 @@ namespace University_Schedule
                 if (prof_selectat != string.Empty)
                     curs.access_profesor = prof_selectat;
 
-             
-                using (Graphics graph = Graphics.FromImage(bmp))
+                try
                 {
-                   graph.FillRectangle(color_select, selected_rectagle);
+                    using (Graphics graph = Graphics.FromImage(bmp))
+                    {
+                        graph.FillRectangle(color_select, selected_rectagle);
+                    }
                 }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+
+
                 if (form.DialogResult == DialogResult.OK)
                 {
                     bmp = Drawing.InsertDataInImage(bmp, color_select, selected_rectagle, curs);
@@ -223,20 +231,28 @@ namespace University_Schedule
                 isStarted = false;
                 GetDataCourse();
 
-                if (i == 0)
+
+                try
                 {
-                    InsertProf();
-                    profesori.Add(curs.access_profesor);
-                }
-                else
-                {
-                    if (!profesori.Contains(curs.access_profesor))
+                    if (i == 0 && curs.access_profesor != "")
                     {
                         InsertProf();
                         profesori.Add(curs.access_profesor);
                     }
+                    else
+                    {
+                        if (!profesori.Contains(curs.access_profesor) && curs.access_profesor != "")
+                        {
+                            InsertProf();
+                            profesori.Add(curs.access_profesor);
+                        }
+                    }
+                    prof_selectat = string.Empty;
                 }
-                prof_selectat = string.Empty;
+                catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             else
                 return;
@@ -433,7 +449,10 @@ namespace University_Schedule
 
             pictureBox1.Image = bmp;
 
-
+            isStarted = false;
+            isRight = true;
+            isDrawing = false;
+            deselected = false;
 
         }
 

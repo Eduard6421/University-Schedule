@@ -53,3 +53,12 @@ C:\Users\Madalin\Source\Repos\University Schedule\bin\Debug\University Schedule.
 C:\Users\Madalin\Source\Repos\University Schedule\bin\Debug\University Schedule.application
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University Schedule.exe.manifest
 C:\Users\Madalin\Source\Repos\University Schedule\obj\Debug\University Schedule.application
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\bin\Debug\University Schedule.exe.manifest
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\bin\Debug\University Schedule.application
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Orar_Nou.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Orar.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form_Sali_Libere.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Form1.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.exe.manifest
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.application

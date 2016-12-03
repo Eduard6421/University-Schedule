@@ -9,12 +9,12 @@ namespace University_Schedule
     public class Course
     {
 
-        private string profesor;
-        private string sala;
-        private string materia;
-        private string ora;
-        private string semigrupa;
-        private string zi;
+        private string profesor = string.Empty;
+        private string sala = string.Empty;
+        private string materia = string.Empty;
+        private string ora = string.Empty;
+        private string semigrupa = string.Empty;
+        private string zi = string.Empty;
 
         public string access_profesor
         {

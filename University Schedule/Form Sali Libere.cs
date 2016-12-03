@@ -11,7 +11,7 @@ namespace University_Schedule
 
 
 
-        private int[] numar_sala = { 1,3,5,8,9,10,12,17,28,118,120,121,122,201,202,204,213,214,215,216,
+        private int[] numar_sala = { 1,3,5,8,9,10,12,17,28,117,118,120,121,122,201,202,204,213,214,215,216,
         217,218,219,220,221,302,303,305,310,317};
 
         private ClassRoom[,,] sali = new ClassRoom[5, 30, 24];

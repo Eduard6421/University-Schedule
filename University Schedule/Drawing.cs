@@ -9,6 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using University_Schedule.Properties;
 
+
+
+
+/// <summary>
+/// Point pentru amfiteatre cu cifrele lor de rahat .... la linia 113
+/// </summary>
 namespace University_Schedule
 {
     class Drawing
@@ -90,7 +96,7 @@ namespace University_Schedule
                     curs = new Rectangle(new Point((rec.X + rec.Width / 3 - 5), (rec.Y + rec.Height / 3 + 15)), new Size(rec.Width, rec.Height));
                     semigrupa = new Rectangle(new Point(rec.X + 1, (rec.Y + rec.Height / 4 + rec.Height / 4 + rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
                     profesor = new Rectangle(new Point(rec.X + 1, rec.Y + 3), new Size(rec.Width, rec.Height));
-                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 55), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
+                    sala = new Rectangle(new Point(rec.X + ((rec.Width / 4) + (rec.Height / 4) + (rec.Width / 4) + (rec.Width / 4) - 65), rec.Y + (rec.Height / 4) + (rec.Height / 4) + (rec.Height / 4) + 13), new Size(rec.Width, rec.Height));
                 }
                 else
                 {
@@ -103,8 +109,42 @@ namespace University_Schedule
                 source = DrawString(cours.access_materia, source, curs);
                 source = DrawString(cours.access_semigrupa, source, semigrupa);
                 source = DrawString(cours.access_profesor, source, profesor);
-                source = DrawString(cours.access_sala, source, sala);
-
+                string[] amfiteatre = { "Spiru Haret", "Stoilow", "Pompeiu","Titeica" };
+                try
+                {
+                    if ((cours.access_sala != "") && (Int32.Parse(cours.access_sala) == 7 || Int32.Parse(cours.access_sala) == 27 || Int32.Parse(cours.access_sala) == 37 || Int32.Parse(cours.access_sala) == 17))
+                    {
+                        string salaDraw = string.Empty;
+                        switch (Int32.Parse(cours.access_sala))
+                        {
+                            case 7:
+                                salaDraw += "(0)" + amfiteatre[0];
+                                break;
+                            case 17:
+                                salaDraw += "(1)" + amfiteatre[1];
+                                break;
+                            case 27:
+                                salaDraw += "(2)" + amfiteatre[2];
+                                break;
+                            case 37:
+                                salaDraw += "(3)" + amfiteatre[3];
+                                break;
+                            default:
+                                Debug.WriteLine("Error");
+                                break;
+                        }
+                        source = DrawString(salaDraw, source, sala);
+                    }
+                    else
+                    {
+                        source = DrawString(cours.access_sala, source, sala);
+                    }
+                }
+                catch(Exception e)
+                {
+                    source = DrawString("Error", source, sala);
+                    Debug.WriteLine(e.Message);
+                }
             }
             return source;
         }
