@@ -17,8 +17,9 @@ namespace University_Schedule
     {
 
 
-        
         public static Course curs;
+
+
         public Insert_Course(Course cours)
         {
             InitializeComponent();
@@ -32,7 +33,26 @@ namespace University_Schedule
         private void button1_Click(object sender, EventArgs e)
         {
 
-           
+            string[] cifre = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string[] litere = { "a", "b", "c", "d", "e", "f", "g", "h", "l", "m", "n", "o", "p", "q"
+                                ,"r","s","t","u","w","x","y","z"};
+            try
+            {
+                if (Drawing.ContainsAny(textBox4.Text, cifre))
+                    throw new Exception("Profesor nu poate contine cifre.");
+                if (Drawing.ContainsAny(textBox3.Text, litere))
+                    throw new Exception("Sala nu poate contine litere");
+                if (Drawing.ContainsAny(textBox5.Text, litere))
+                    throw new Exception("Semigrupa poate contine doar o cifra");
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return;
+            }
+
+
 
             curs.access_materia = textBox1.Text;
             curs.access_ora = textBox2.Text;

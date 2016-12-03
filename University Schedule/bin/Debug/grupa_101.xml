@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <access_profesor />
+    <access_sala>1</access_sala>
+    <access_materia />
+    <access_ora>8 - 16</access_ora>
+    <access_semigrupa />
+    <access_zi>Luni</access_zi>
+  </Course>
+</ArrayOfCourse>

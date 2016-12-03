@@ -62,6 +62,18 @@ namespace University_Schedule
             return bmp;
         }
 
+
+        public static bool ContainsAny(string haystack, params string[] needles)
+        {
+            foreach (string needle in needles)
+            {
+                if (haystack.Contains(needle))
+                    return true;
+            }
+
+            return false;
+        }
+
         public static Bitmap InsertDataInImage(Bitmap source, Brush color, Rectangle rec, Course cours)
         {
             Rectangle profesor;

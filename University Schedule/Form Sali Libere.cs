@@ -28,7 +28,10 @@ namespace University_Schedule
         {
             InitializeComponent();
             Initialize_Matrix();
+            Initialize_ComboBox();
             Get_Schedule();
+
+     
 
         }
 
@@ -45,6 +48,20 @@ namespace University_Schedule
                     for (k = 0; k < 24; ++k)
                         sali[i, j, k] = new ClassRoom();
 
+
+
+        }
+
+        public void Initialize_ComboBox()
+        {
+
+            comboBox1.Items.Add("Luni");
+            comboBox1.Items.Add("Marti");
+            comboBox1.Items.Add("Miercuri");
+            comboBox1.Items.Add("Joi");
+            comboBox1.Items.Add("Vineri");
+            comboBox1.Text = "Luni";
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
         }
@@ -145,36 +162,30 @@ namespace University_Schedule
 
 
         }
-        public void Find_Class_In_Hours_And_Day(int hour_start, int hour_end)
+        public void Find_Class_In_Hours_And_Day(int zi,int hour_start, int hour_end)
         {
             int i, j, k;
             bool is_valid = true;
 
-            for (i = 0; i < 5; ++i)
-            {
-                for (j = 0; j < 32; ++j)
+  
+                for (j = 0; j < 31; ++j)
                 {
                     is_valid = true;
-                    for (k = hour_start; k < hour_end && is_valid == true; ++j)
-                        if (sali[i, j, k].is_empty != true)
+                    for (k = hour_start; k < hour_end && is_valid == true; ++k)
+                        if (sali[zi, j, k].is_empty != true)
                         {
                             is_valid = false;
                         }
                     if (is_valid)
                     {
-                        ListViewItem temp = new ListViewItem(numar_sala[k].ToString());
-                        temp.SubItems.Add(zile[i]);
-                        temp.SubItems.Add(ora_inceput + " - " + ora_final);
+                        ListViewItem temp = new ListViewItem(numar_sala[j].ToString());
+                        temp.SubItems.Add(zile[zi]);
+                        temp.SubItems.Add(hour_start + " - " + hour_end);
                         listView1.Items.Add(temp);
 
                     }
 
-
-
                 }
-
-
-            }
 
             if (listView1.Items.Count == 0)
             {
@@ -223,20 +234,17 @@ namespace University_Schedule
         public void Show_Free_In_day(int zi)
         {
             int  i,j, k;
-            int cnt = 0;
             for (i = 0; i < 31; ++i)
             {
                 for (j = 0; j < 24; ++j)
                 {
                     if (sali[zi, i, j].is_empty == true)
                     {
-                        ++cnt;
                         ListViewItem temp = new ListViewItem(numar_sala[i].ToString());
                         temp.SubItems.Add(zile[zi]);
                         k = j + 1;
                         temp.SubItems.Add(j + " - " + k);
                         listView1.Items.Add(temp);
-                        Debug.WriteLine(cnt);
                     }
 
                 }
@@ -386,7 +394,14 @@ namespace University_Schedule
 
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        Find_Class_In_Hours_And_Day(ora_inceput, ora_final);
+                        if (ora_inceput <= ora_final)
+                        {
+                            Find_Class_In_Hours_And_Day(zi, ora_inceput, ora_final);
+                            Debug.Write("Gata");
+                        }
+
+                        else
+                            MessageBox.Show("Incorect Time Input");
                         return;
                     }
 
@@ -407,7 +422,10 @@ namespace University_Schedule
 
                     ora_inceput = int.Parse(hour_start);
                     ora_final = int.Parse(hour_end);
-                    Is_Class_Free(day, sala, ora_inceput, ora_final);
+                    if (ora_inceput <= ora_final)
+                        Is_Class_Free(day, sala, ora_inceput, ora_final);
+                    else
+                        MessageBox.Show("Incorect Time Input");
                     return;
                 }
 
@@ -437,7 +455,11 @@ namespace University_Schedule
                     {
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        Find_Day_For_Class_And_Hours(sala,ora_inceput,ora_final);
+                        if (ora_inceput <= ora_final)
+                            Find_Day_For_Class_And_Hours(sala,ora_inceput,ora_final);
+                        else
+                            MessageBox.Show("Incorect Time Input");
+                        return;
 
                     }
 
@@ -456,8 +478,12 @@ namespace University_Schedule
                     {
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        Find_Class_No_Day(ora_inceput,ora_final);
-                        
+                        if (ora_inceput <= ora_final)
+                            Find_Class_No_Day(ora_inceput,ora_final);
+                        else
+                            MessageBox.Show("Incorect Time Input");
+                        return;
+
                     }
 
                     catch
@@ -476,6 +502,11 @@ namespace University_Schedule
             }
        
 
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
@@ -523,7 +554,7 @@ namespace University_Schedule
             foreach ( ListViewItem item  in listView1.Items)
             listView1.Items.Remove(item);
 
-            Convert_Data1(textBox2.Text, maskedTextBox1.Text,maskedTextBox2.Text, maskedTextBox3.Text); // zi / inceput / final / sala
+            Convert_Data1(comboBox1.Text, maskedTextBox1.Text,maskedTextBox2.Text, maskedTextBox3.Text); // zi / inceput / final / sala
 
 
         }
