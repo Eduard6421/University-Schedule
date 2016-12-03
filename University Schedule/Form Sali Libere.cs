@@ -12,9 +12,11 @@ namespace University_Schedule
 
 
         private int[] numar_sala = { 1,3,5,8,9,10,12,17,28,117,118,120,121,122,201,202,204,213,214,215,216,
-        217,218,219,220,221,302,303,305,310,317};
+        217,218,219,220,221,302,303,305,310,317}; // sunt 31
 
-        private ClassRoom[,,] sali = new ClassRoom[5, 30, 24];
+        private string[] zile = { "Luni", "Marti", "Miercuri", "Joi", "Vineri" };
+
+        private ClassRoom[,,] sali = new ClassRoom[5, 31, 24];
         private List<Course> cursuri = new List<Course>();
         int zi, ora_inceput,ora_final, sala;
 
@@ -39,7 +41,7 @@ namespace University_Schedule
             int i, j, k;
 
             for (i = 0; i < 5; ++i)
-                for (j = 0; j < 30; ++j)
+                for (j = 0; j < 31; ++j)
                     for (k = 0; k < 24; ++k)
                         sali[i, j, k] = new ClassRoom();
 
@@ -57,71 +59,30 @@ namespace University_Schedule
 
             for(i=0;i<24;++i)
             {
-                if(sali[zi,Array.IndexOf(numar_sala,sala),i].is_empty == true && i>7 && i< 22)
+                try
                 {
-                    j = i + 1;
-                    ListViewItem temp = new ListViewItem(sala.ToString());
-                    temp.SubItems.Add(day);
-                    temp.SubItems.Add(i + " - " + j);
-                    listView1.Items.Add(temp);
+                    if (sali[zi, Array.IndexOf(numar_sala, sala), i].is_empty == true && i > 7 && i < 22)
+                    {
+                        j = i + 1;
+                        ListViewItem temp = new ListViewItem(sala.ToString());
+                        temp.SubItems.Add(day);
+                        temp.SubItems.Add(i + " - " + j);
+                        listView1.Items.Add(temp);
 
-                    is_valid = true;
+                        is_valid = true;
+                    }
+                }
+                catch
+                {
+                    Debug.WriteLine("Penus");
+                    return;
                 }
 
             }
-
-            if (is_valid == false)
-
-            {
-                ListViewItem temp = new ListViewItem(sala.ToString());
-                temp.SubItems.Add(day);
-                temp.SubItems.Add("Nici o ora libera");
-
-
-
-            }
-
-
-
 
 
          }
-        public void Find_Class(string day,int sala)
-
-        {
-
-            int i, j;
-            bool is_valid;
-
-            for (i = 0; i < numar_sala.Length; ++i)
-            {
-                j = ora_inceput;
-                is_valid = true;
-                while (j <= ora_final && is_valid)
-                {
-                    if (sali[zi,i, j].is_empty == false)
-                        is_valid = false;
-
-                    ++j;
-
-                }
-
-                if (is_valid == true)
-                {
-                    ListViewItem temp = new ListViewItem(numar_sala[i].ToString());
-                    temp.SubItems.Add(day);
-                    temp.SubItems.Add(ora_inceput + " " + ora_final);
-                    listView1.Items.Add(temp);
-
-                }
-
-
-
-
-
-                }
-
-        }
+      
         public void Is_Class_Free(string day,int sala,int ora_inceput, int ora_final)
         {
             bool is_valid = true;
@@ -157,7 +118,136 @@ namespace University_Schedule
 
         }
 
+        public void All_Free_CLasses()
+        {
+            int i, j, k;
 
+            for (i = 0; i < 5; ++i)
+            {
+                for(j=0;j<31;++j)
+                {
+                    for (k = 0; k < 24; ++k)
+                        if (sali[i, j, k].is_empty == true)
+                        {
+
+                            int l = k + 1;
+                            ListViewItem temp = new ListViewItem(numar_sala[j].ToString());
+                            temp.SubItems.Add(zile[i]);
+                            temp.SubItems.Add(k + "-" + l);
+                            listView1.Items.Add(temp);
+
+
+                        }
+
+                }
+
+            }
+
+
+        }
+        public void Find_Class_In_Hours_And_Day(int hour_start, int hour_end)
+        {
+            int i, j, k;
+            bool is_valid = true;
+
+            for (i = 0; i < 5; ++i)
+            {
+                for (j = 0; j < 32; ++j)
+                {
+                    is_valid = true;
+                    for (k = hour_start; k < hour_end && is_valid == true; ++j)
+                        if (sali[i, j, k].is_empty != true)
+                        {
+                            is_valid = false;
+                        }
+                    if (is_valid)
+                    {
+                        ListViewItem temp = new ListViewItem(numar_sala[k].ToString());
+                        temp.SubItems.Add(zile[i]);
+                        temp.SubItems.Add(ora_inceput + " - " + ora_final);
+                        listView1.Items.Add(temp);
+
+                    }
+
+
+
+                }
+
+
+            }
+
+            if (listView1.Items.Count == 0)
+            {
+                ListViewItem temp = new ListViewItem("Nu este nicio clasa valabila");
+                listView1.Items.Add(temp);
+            }
+
+
+
+        }
+
+        public void Find_Day_For_Class_And_Hours(int sala,int ora_inceput,int ora_final)
+        {
+            int i, k;
+            bool is_valid;
+
+            for (i = 0; i < 5; ++i)
+            {
+                    is_valid = true;
+                for (k = ora_inceput; k <= ora_final && is_valid; ++k)
+                    if (sali[i, Array.IndexOf(numar_sala,sala), k].is_empty == false)
+                        is_valid = false;
+
+
+                if (is_valid)
+                {
+
+                    ListViewItem temp = new ListViewItem(sala.ToString());
+                    temp.SubItems.Add(zile[i]);
+                    temp.SubItems.Add(ora_inceput + " - " + ora_final);
+                    listView1.Items.Add(temp);
+
+                }
+
+                }
+
+            if(listView1.Items.Count == 0)
+            {
+                ListViewItem temp = new ListViewItem("Nicio clasa nu este libera");
+                listView1.Items.Add(temp);
+
+            }
+
+          }
+
+        public void Show_Free_In_day(int zi)
+        {
+            int  i,j, k;
+            int cnt = 0;
+            for (i = 0; i < 31; ++i)
+            {
+                for (j = 0; j < 24; ++j)
+                {
+                    if (sali[zi, i, j].is_empty == true)
+                    {
+                        ++cnt;
+                        ListViewItem temp = new ListViewItem(numar_sala[i].ToString());
+                        temp.SubItems.Add(zile[zi]);
+                        k = j + 1;
+                        temp.SubItems.Add(j + " - " + k);
+                        listView1.Items.Add(temp);
+                        Debug.WriteLine(cnt);
+                    }
+
+                }
+            }
+            if (listView1.Items.Count == 0)
+            {
+                ListViewItem temp = new ListViewItem("Nicio clasa nu este libera");
+                listView1.Items.Add(temp);
+
+            }
+        }
 
         public void  Convert_Data(string day, string hour, string classroom)
         {
@@ -182,6 +272,89 @@ namespace University_Schedule
 
         }
 
+        public void Find_Class_No_Day(int ora_inceput,int  ora_final)
+        {
+
+            int i, j,k;
+            bool is_valid = true;
+
+            for (i = 0; i < 5; ++i)
+            {
+
+                for (j = 0; j < 32; ++j)
+                {
+                    is_valid = true;
+
+                    for(k=ora_inceput;k<ora_final && is_valid;++k)
+                    {
+                        if (sali[i, j, k].is_empty == false)
+                            is_valid = false;
+
+
+                    }
+
+                    if (is_valid == true)
+                    {
+                        ListViewItem temp = new ListViewItem(numar_sala[j].ToString());
+                        temp.SubItems.Add(zile[i]);
+                        temp.SubItems.Add(ora_inceput + " - " + ora_final);
+                        listView1.Items.Add(temp);
+
+
+                    }
+
+
+
+                }
+
+
+            }
+
+            if (listView1.Items.Count == 0)
+            {
+                ListViewItem temp = new ListViewItem("Nicio clasa nu este libera");
+                listView1.Items.Add(temp);
+
+
+            }
+
+
+        }
+        public void Find_Day_And_Hours_For_Class(int sala)
+        {
+
+            int i, j,k;
+
+            for (i = 0; i < 5; ++i)
+            {
+                for (j = 0; j < 24; ++j)
+                {
+                    if (sali[i, Array.IndexOf(numar_sala, sala), j].is_empty == true)
+                    {
+
+                        ListViewItem temp = new ListViewItem(sala.ToString());
+                        temp.SubItems.Add(zile[i]);
+                        k = j + 1;
+                        temp.SubItems.Add(j + "-" + k);
+                        listView1.Items.Add(temp);
+
+
+                    }
+                }
+            }
+           
+
+                if (listView1.Items.Count == 0)
+                {
+                    ListViewItem temp = new ListViewItem("Nicio clasa nu este libera");
+                    listView1.Items.Add(temp);
+
+
+                }
+
+
+
+           }
 
         public void Convert_Data1(string day, string hour_start, string hour_end, string classroom)
         {
@@ -197,7 +370,7 @@ namespace University_Schedule
                 default: zi = -1; break;
             }
 
-            if (zi > 0)
+            if (zi >= 0)
             {
                 try
                 {
@@ -213,7 +386,7 @@ namespace University_Schedule
 
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        Find_Class(day, sala);
+                        Find_Class_In_Hours_And_Day(ora_inceput, ora_final);
                         return;
                     }
 
@@ -221,6 +394,7 @@ namespace University_Schedule
                     {
 
                         Debug.WriteLine("Everything Wong");
+                        Show_Free_In_day(zi);
                         return;
 
                     }
@@ -234,6 +408,7 @@ namespace University_Schedule
                     ora_inceput = int.Parse(hour_start);
                     ora_final = int.Parse(hour_end);
                     Is_Class_Free(day, sala, ora_inceput, ora_final);
+                    return;
                 }
 
                 catch
@@ -247,7 +422,59 @@ namespace University_Schedule
                 }
 
             }
+
+
+
+            // NO DAY-------------------
+
+
+            else
+            {
+                try
+                {
+                    sala = int.Parse(classroom);
+                    try
+                    {
+                        ora_inceput = int.Parse(hour_start);
+                        ora_final = int.Parse(hour_end);
+                        Find_Day_For_Class_And_Hours(sala,ora_inceput,ora_final);
+
+                    }
+
+                    catch
+                    {
+                        Debug.WriteLine("No Day / No Hours");
+                        Find_Day_And_Hours_For_Class(sala);
+                        return;
+
+                    }
+
+                }
+                catch 
+                {
+                    try
+                    {
+                        ora_inceput = int.Parse(hour_start);
+                        ora_final = int.Parse(hour_end);
+                        Find_Class_No_Day(ora_inceput,ora_final);
+                        
+                    }
+
+                    catch
+                    {
+                        Debug.WriteLine("Everything Wong");
+                        All_Free_CLasses();
+                    
+                        return;
+
+                    }
+
+              
            
+                }
+
+            }
+       
 
 
         }

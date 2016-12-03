@@ -78,9 +78,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView1.Location = new System.Drawing.Point(385, 67);
+            this.listView1.Location = new System.Drawing.Point(375, 76);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(383, 155);
+            this.listView1.Size = new System.Drawing.Size(609, 380);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -93,12 +93,12 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Ziua";
-            this.columnHeader2.Width = 84;
+            this.columnHeader2.Width = 110;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Ora";
-            this.columnHeader3.Width = 91;
+            this.columnHeader3.Width = 291;
             // 
             // label3
             // 
@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1104, 482);
+            this.ClientSize = new System.Drawing.Size(1113, 503);
             this.Controls.Add(this.maskedTextBox3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.maskedTextBox2);
