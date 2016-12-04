@@ -60,7 +60,8 @@ namespace University_Schedule
             comboBox1.Items.Add("Miercuri");
             comboBox1.Items.Add("Joi");
             comboBox1.Items.Add("Vineri");
-            comboBox1.Text = "Luni";
+            comboBox1.Items.Add("");
+            comboBox1.Text = "";
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
@@ -394,7 +395,7 @@ namespace University_Schedule
 
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        if (ora_inceput <= ora_final)
+                        if (ora_inceput <= ora_final && ora_final <24)
                         {
                             Find_Class_In_Hours_And_Day(zi, ora_inceput, ora_final);
                             Debug.Write("Gata");
@@ -422,7 +423,7 @@ namespace University_Schedule
 
                     ora_inceput = int.Parse(hour_start);
                     ora_final = int.Parse(hour_end);
-                    if (ora_inceput <= ora_final)
+                    if (ora_inceput <= ora_final && ora_final < 24)
                         Is_Class_Free(day, sala, ora_inceput, ora_final);
                     else
                         MessageBox.Show("Incorect Time Input");
@@ -455,7 +456,7 @@ namespace University_Schedule
                     {
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        if (ora_inceput <= ora_final)
+                        if (ora_inceput <= ora_final && ora_final < 24 )
                             Find_Day_For_Class_And_Hours(sala,ora_inceput,ora_final);
                         else
                             MessageBox.Show("Incorect Time Input");
@@ -478,7 +479,7 @@ namespace University_Schedule
                     {
                         ora_inceput = int.Parse(hour_start);
                         ora_final = int.Parse(hour_end);
-                        if (ora_inceput <= ora_final)
+                        if (ora_inceput <= ora_final && ora_final <24)
                             Find_Class_No_Day(ora_inceput,ora_final);
                         else
                             MessageBox.Show("Incorect Time Input");
