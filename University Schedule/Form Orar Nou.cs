@@ -59,8 +59,6 @@ namespace University_Schedule
 
         private static List<Course> cursuri = new List<Course>();
         private List<string> profesori = new List<string>();
-        string prof_selectat = string.Empty;
-        Label[] label = new Label[25];
         int repetition = 0, i = 0;
 
 
@@ -96,41 +94,9 @@ namespace University_Schedule
             this.MinimumSize = this.Size;
         }
 
-        void InsertProf()
-        {
-            label[i] = new Label();
-            label[i].Text = curs.access_profesor;
-            label[i].Visible = true;
-            label[i].Location = new Point(10, i * 15);
-            label[i].Height = 20;
-            label[i].Width = panel1.Size.Width;
-            label[i].BackColor = color_select_forProf;
-            label[i].MouseDown += label_mouseDown;
-            label[i].Font = new Font("Arial", 13);
-            label[i].Show();
-            repetition++;
-            panel1.Controls.Add(label[i]);
-            i++;
-        }
+      
 
-        private void label_mouseDown(object sender, MouseEventArgs e)
-        {
-            Point p = new Point();
-            Drawing.GetCursorPos(ref p);
-            Color color = Drawing.GetPixelColor(p.X, p.Y);
-
-            Brush dd = new SolidBrush(color);
-            Bitmap a = Drawing.DrawRectangleOnImage(100, 100);
-            using (Graphics d = Graphics.FromImage(a))
-            {
-                d.FillRectangle(dd, new Rectangle(new Point(0, 0), new Size(100, 100)));
-            }
-            pictureBox2.Image = a;
-            color_select = new SolidBrush(color);
-
-            prof_selectat = (sender as Label).Text;
-            
-        }
+     
 
         public static List<Course> GetList()
         {
@@ -204,10 +170,7 @@ namespace University_Schedule
                 curs = new Course();
                 var form = new Insert_Course(curs);
                 form.ShowDialog();
-
-                if (prof_selectat != string.Empty)
-                    curs.access_profesor = prof_selectat;
-
+                
                 try
                 {
                     using (Graphics graph = Graphics.FromImage(bmp))
@@ -232,27 +195,7 @@ namespace University_Schedule
                 GetDataCourse();
 
 
-                try
-                {
-                    if (i == 0 && curs.access_profesor != "")
-                    {
-                        InsertProf();
-                        profesori.Add(curs.access_profesor);
-                    }
-                    else
-                    {
-                        if (!profesori.Contains(curs.access_profesor) && curs.access_profesor != "")
-                        {
-                            InsertProf();
-                            profesori.Add(curs.access_profesor);
-                        }
-                    }
-                    prof_selectat = string.Empty;
-                }
-                catch(Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+              
             }
             else
                 return;

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="101312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="99776">
       <assemblyIdentity name="University Schedule" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Y5tt7BNuimIY0Bw/zQREWysRKzYNmP1V7gjS6L0WjXE=</dsig:DigestValue>
+        <dsig:DigestValue>5RgW5IUXA06mxE+L7bDiW30dBij+2yCoJT3jz4MtFs4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
