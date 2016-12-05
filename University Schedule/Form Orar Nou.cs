@@ -169,14 +169,26 @@ namespace University_Schedule
             {
                 curs = new Course();
                 var form = new Insert_Course(curs);
-                form.ShowDialog();
                 
                 try
                 {
-                    using (Graphics graph = Graphics.FromImage(bmp))
+                    if (form.ShowDialog() == DialogResult.OK)
+                        using (Graphics graph = Graphics.FromImage(bmp))
+                        {
+                            graph.FillRectangle(color_select, selected_rectagle);
+                        }
+                    else
                     {
-                        graph.FillRectangle(color_select, selected_rectagle);
+                        bmp = copy;
+                        pictureBox1.Image = copy;
+                        isStarted = false;
+                        isRight = true;
+                        isDrawing = false;
+                        deselected = false;
+
+
                     }
+
                 }
                 catch(Exception ex)
                 {

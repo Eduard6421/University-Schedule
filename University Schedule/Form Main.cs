@@ -21,6 +21,8 @@ namespace University_Schedule
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            pictureBox1.BackColor = Color.FromArgb(00, 33, 66);
         }
 
         /// <summary>
