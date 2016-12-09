@@ -7,14 +7,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="University Schedule.exe.manifest" size="4392">
+    <dependentAssembly dependencyType="install" codebase="University Schedule.exe.manifest" size="4412">
       <assemblyIdentity name="University Schedule.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uUuDLCM56sG9NxtA4t5BNG1aJ9Kar8twP+ytSs6SRUk=</dsig:DigestValue>
+        <dsig:DigestValue>4dku+eIuZqsyGFoVAtHDn3tRlNDZFQuws9OUeldR3vw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

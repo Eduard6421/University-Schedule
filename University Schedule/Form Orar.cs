@@ -14,17 +14,30 @@ namespace University_Schedule
 {
     public partial class Form_Orar : Form
     {
-
+        public static List<string> profils = new List<string>();
         private Bitmap img;
-
+       
+        /// <summary>
+        /// profils si cu groups trebuie initializate cu iteme in main form ... 
+        /// eroare daca nu se intra mai intai in form-nou unde se initializeaza in constructor
+        /// da crash pentru ca profils este vid
+        /// </summary>
         public Form_Orar()
         {
+            profils.Add("MATE");
+            profils.Add("INFO");
+            profils.Add("CTI");
+           
             InitializeComponent();
-            for (int i = 0; i <= Form_Orar_Nou.valid_groups.Length - 1; ++i)
-                comboBox1.Items.Add(Form_Orar_Nou.valid_groups[i]);
+            for (int i = 0; i <= profils.Count - 1; ++i)
+                comboBox2.Items.Add(profils[i]);
 
-            comboBox1.Text = "101";
-            
+            for (int i = 0; i <= Form_Orar_Nou.groups.Count - 1; ++i)
+                comboBox1.Items.Add(Form_Orar_Nou.groups[i]);
+
+            comboBox1.Text =Form_Orar_Nou.groups[0].ToString();
+            comboBox2.Text = profils[0];
+
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -42,7 +55,7 @@ namespace University_Schedule
                 {
                     img = new Bitmap(bmpTemp);
                 }
-                img = Drawing.CombineImages(img,group_number);
+                img = Drawing.CombineImages(img,group_number,comboBox2.Text);
                 pictureBox1.Image = img;
             }
             else
@@ -70,6 +83,25 @@ namespace University_Schedule
             this.Hide();
             test.Closed += (s, args) => this.Close();
             test.Show();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string group_number = comboBox1.Text;
+            if (File.Exists("group_" + group_number + ".png"))
+            {
+                using (var bmpTemp = new Bitmap("group_" + group_number + ".png"))
+                {
+                    img = new Bitmap(bmpTemp);
+                }
+                img = Drawing.CombineImages(img, group_number, comboBox2.Text);
+                pictureBox1.Image = img;
+            }
+            else
+            {
+                img = Resources.schema_orar;
+                pictureBox1.Image = img;
+            }
         }
     }
 }

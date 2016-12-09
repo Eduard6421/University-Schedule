@@ -42,18 +42,17 @@ namespace University_Schedule
                 }
             return img;
         }
-        //725,10
-        public static Bitmap CombineImages(Bitmap bmp1,string number)
+        //725,10 ,485,20
+        public static Bitmap CombineImages(Bitmap bmp1,string number,string profil)
         {
             Bitmap bmp = Resources.schema_orar;
-
             Graphics g = Graphics.FromImage(bmp);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
             g.DrawString(number, new Font("Segoe", 30), Brushes.Black, new PointF(720, 10));
-
+            g.DrawString(profil, new Font("Segoe", 30), Brushes.Black, new PointF(470, 10));
 
             g.Flush();
             

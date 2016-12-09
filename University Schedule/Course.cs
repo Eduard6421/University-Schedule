@@ -16,6 +16,8 @@ namespace University_Schedule
         private string semigrupa = string.Empty;
         private string zi = string.Empty;
 
+        
+
         public string access_profesor
         {
             get { return profesor; }

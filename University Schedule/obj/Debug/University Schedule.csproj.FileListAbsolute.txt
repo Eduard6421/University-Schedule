@@ -62,3 +62,4 @@ C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\
 C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Insert_Course.resources
 C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.exe.manifest
 C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University Schedule.application
+C:\Users\Madalin\Source\Repos\University-Schedule\University Schedule\obj\Debug\University_Schedule.Settings_Form.resources

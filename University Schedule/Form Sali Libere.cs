@@ -516,9 +516,9 @@ namespace University_Schedule
           
             int i,j,k;
          
-            for (i = 0; i <= Form_Orar_Nou.valid_groups.Length - 1; ++i)
+            for (i = 0; i <= Form_Orar_Nou.groups.Count - 1; ++i)
             {
-                cursuri = SaveXML.Load_Data(cursuri, "grupa_" + Form_Orar_Nou.valid_groups[i] + ".xml");
+                cursuri = SaveXML.Load_Data(cursuri, "grupa_" + Form_Orar_Nou.groups[i] + ".xml");
 
                 if (cursuri.Count > 0)
                 {

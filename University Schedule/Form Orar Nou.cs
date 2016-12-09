@@ -25,6 +25,7 @@ namespace University_Schedule
         public static int[] valid_groups = {101,102,103,104,105,131,132,133,134,135,141,142,143,144,151,152,153,154,201,
         211,212,221,222,231,232,233,234,235,241,242,243,244,251,252,253,254,301,311,321,331,332,333,334,341,
             342,343,344,351,352,353,354,451,452,453,454,405,406,407,408,501,503,505,506,507,508};
+        public static List<int> groups = new List<int>();
 
         public Course curs; 
 
@@ -65,9 +66,12 @@ namespace University_Schedule
         public Form_Orar_Nou()
         {
             InitializeComponent();
+            //de test
+            for (int i = 0; i < valid_groups.Length; i++)
+                groups.Add(valid_groups[i]);
 
-            for (int i=0; i<= valid_groups.Length-1;++i)
-                comboBox1.Items.Add(valid_groups[i]);
+            for (int i=0; i<= groups.Count-1;++i)
+                comboBox1.Items.Add(groups[i]);
 
             comboBox1.Text = "101";
 
@@ -185,8 +189,6 @@ namespace University_Schedule
                         isRight = true;
                         isDrawing = false;
                         deselected = false;
-
-
                     }
 
                 }

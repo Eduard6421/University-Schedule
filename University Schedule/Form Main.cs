@@ -70,5 +70,13 @@ namespace University_Schedule
             test.Closed += (s, args) => this.Close();
             test.Show();
         }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Form seting = new Settings_Form();
+            this.Hide();
+            seting.Closed += (s, args) => this.Close();
+            seting.Show();
+        }
     }
 }

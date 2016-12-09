@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
   <asmv1:assemblyIdentity name="University Schedule.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
-  <description asmv2:iconFile="d.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:iconFile="Resources\d.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="University Schedule" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -43,26 +43,17 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="8883136">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="University Schedule.exe" size="8885696">
       <assemblyIdentity name="University Schedule" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SKR8+Hi08RxqSTwPKPOuw+VKUzPvxsa1opU00Dn6abs=</dsig:DigestValue>
+        <dsig:DigestValue>e1GBR8gob/F7NvkJQYgGdRGJ7RMtej+5v8aIVReuQRA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="d.ico" size="1453926">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3d6RGMvmtbNCmlZOqcnmHLZi572XnTwlg2RbhzE0piU=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Resources\copy.png" size="20180">
     <hash>
       <dsig:Transforms>
@@ -70,6 +61,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>ZSK/jJLblY+oevfoR8ZOrSRaUWyo/wsAcjkmyOv6kWU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\d.ico" size="1453926">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3d6RGMvmtbNCmlZOqcnmHLZi572XnTwlg2RbhzE0piU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="University Schedule.exe.config" size="189">

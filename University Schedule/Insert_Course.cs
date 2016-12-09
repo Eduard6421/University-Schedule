@@ -16,7 +16,7 @@ namespace University_Schedule
     public partial class Insert_Course : Form
     {
 
-
+    
         public static Course curs;
 
 
@@ -24,23 +24,30 @@ namespace University_Schedule
         {
             InitializeComponent();
             curs = cours;
-   
             textBox2.Text = Form_Orar_Nou.data.Item1 + " - " + Form_Orar_Nou.data.Item2;
-
+        
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-             if (textBox4.Text == "")
+            if (textBox4.Text == "")
+            {
                 MessageBox.Show("Nu a fost introdusa materia");
+                this.DialogResult = DialogResult.Cancel;
+            }
             else if (textBox3.Text == "")
+            {
                 MessageBox.Show("Nu a fost selectata nicio sala.");
+                this.DialogResult = DialogResult.Cancel;
+            }
             else if (textBox1.Text == "")
+            {
                 MessageBox.Show("Nu a fost introdus niciun profesor");
-
-            else {
+                this.DialogResult = DialogResult.Cancel;
+            }
+            else
+            {
                 string[] cifre = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
                 string[] litere = { "a", "b", "c", "d", "e", "f", "g", "h", "l", "m", "n", "o", "p", "q"
                                 ,"r","s","t","u","w","x","y","z"};
@@ -68,15 +75,13 @@ namespace University_Schedule
                 curs.access_semigrupa = textBox5.Text;
                 curs.access_zi = Form_Orar_Nou.day;
 
-
                 Form_Orar_Nou.GetList().Add(curs);
-
-
 
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            
         }
 
              
