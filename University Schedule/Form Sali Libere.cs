@@ -8,9 +8,6 @@ namespace University_Schedule
 {
     public partial class Form_Sali_Libere : Form
     {
-
-
-
         private int[] numar_sala = { 1,3,5,8,9,10,12,17,28,117,118,120,121,122,201,202,204,213,214,215,216,
         217,218,219,220,221,302,303,305,310,317}; // sunt 31
 
@@ -21,9 +18,6 @@ namespace University_Schedule
         int zi, ora_inceput,ora_final, sala;
 
 
- 
-
-
         public Form_Sali_Libere()
         {
             InitializeComponent();
@@ -31,11 +25,7 @@ namespace University_Schedule
             Initialize_ComboBox();
             Get_Schedule();
 
-     
-
         }
-
-
 
        
         public void Initialize_Matrix()
@@ -48,25 +38,19 @@ namespace University_Schedule
                     for (k = 0; k < 24; ++k)
                         sali[i, j, k] = new ClassRoom();
 
-
-
         }
 
         public void Initialize_ComboBox()
         {
 
-            comboBox1.Items.Add("Luni");
-            comboBox1.Items.Add("Marti");
-            comboBox1.Items.Add("Miercuri");
-            comboBox1.Items.Add("Joi");
-            comboBox1.Items.Add("Vineri");
+            for (int i = 0; i < 5; ++i)
+                comboBox1.Items.Add(zile[i]);
             comboBox1.Items.Add("");
             comboBox1.Text = "";
+
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
         }
-
 
         private void Find_FreeHours(string day,int sala)
          {
@@ -122,6 +106,7 @@ namespace University_Schedule
                 listView1.Items.Add(temp);
 
             }
+
             else
             {
                 ListViewItem temp = new ListViewItem(sala.ToString());
@@ -193,8 +178,6 @@ namespace University_Schedule
                 ListViewItem temp = new ListViewItem("Nu este nicio clasa valabila");
                 listView1.Items.Add(temp);
             }
-
-
 
         }
 
@@ -289,7 +272,6 @@ namespace University_Schedule
 
             for (i = 0; i < 5; ++i)
             {
-
                 for (j = 0; j < 32; ++j)
                 {
                     is_valid = true;
@@ -308,15 +290,9 @@ namespace University_Schedule
                         temp.SubItems.Add(zile[i]);
                         temp.SubItems.Add(ora_inceput + " - " + ora_final);
                         listView1.Items.Add(temp);
-
-
                     }
 
-
-
                 }
-
-
             }
 
             if (listView1.Items.Count == 0)
@@ -508,7 +484,7 @@ namespace University_Schedule
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            return;
         }
 
         private void  Get_Schedule()
@@ -551,13 +527,10 @@ namespace University_Schedule
         private void button1_Click(object sender, EventArgs e)
         {
 
-
             foreach ( ListViewItem item  in listView1.Items)
             listView1.Items.Remove(item);
 
             Convert_Data1(comboBox1.Text, maskedTextBox1.Text,maskedTextBox2.Text, maskedTextBox3.Text); // zi / inceput / final / sala
-
-
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -568,4 +541,6 @@ namespace University_Schedule
             test.Show();
         }
     }
+
+
 }
