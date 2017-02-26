@@ -186,7 +186,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(231, 724);
+            this.button1.Location = new System.Drawing.Point(231, 713);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -197,7 +197,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(134, 729);
+            this.label12.Location = new System.Drawing.Point(134, 718);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 13);
             this.label12.TabIndex = 9;
@@ -205,7 +205,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(312, 724);
+            this.button2.Location = new System.Drawing.Point(312, 713);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
@@ -216,7 +216,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(646, 729);
+            this.label13.Location = new System.Drawing.Point(646, 718);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 12;
@@ -224,7 +224,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(718, 724);
+            this.button3.Location = new System.Drawing.Point(718, 713);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 13;
@@ -236,7 +236,7 @@
             // 
             this.comboBox1.DisplayMember = "101";
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(481, 725);
+            this.comboBox1.Location = new System.Drawing.Point(481, 714);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 14;
@@ -254,7 +254,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1141, 719);
+            this.button4.Location = new System.Drawing.Point(1141, 712);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 17;
@@ -287,7 +287,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(393, 723);
+            this.button6.Location = new System.Drawing.Point(393, 712);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 19;
@@ -297,9 +297,11 @@
             // 
             // Form_Orar_Nou
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 785);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1244, 774);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -315,6 +317,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Orar_Nou";
             this.Text = "Orar Nou";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Form_Orar_Nou_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

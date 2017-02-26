@@ -93,9 +93,11 @@ namespace University_Schedule
                 bmp = Drawing.DrawRectangleOnImage(pictureBox1.Size.Width, pictureBox1.Size.Height);
                 pictureBox1.Image = bmp;
             }
-            
-            this.WindowState = FormWindowState.Maximized;
-            this.MinimumSize = this.Size;
+
+            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+            this.Location = new Point(0, 0);
+
+
         }
 
       
@@ -394,6 +396,11 @@ namespace University_Schedule
                 deselected = false;
             }
        }
+
+        private void Form_Orar_Nou_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
