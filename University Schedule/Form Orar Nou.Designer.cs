@@ -317,7 +317,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Orar_Nou";
             this.Text = "Orar Nou";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form_Orar_Nou_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
